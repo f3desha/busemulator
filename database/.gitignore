@@ -1,2 +1,3 @@
-*.sqlite
-*.sqlite-journal
+# I added sqlite to git only for demo purposes
+#*.sqlite
+#*.sqlite-journal
