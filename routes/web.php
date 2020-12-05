@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'role:user'], function() {
+    Route::get('/', 'HomeController@test');
+});
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'role:driver'], function() {
+    Route::get('/drive', 'HomeController@test');
 });
 
 Auth::routes();
