@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = Role::where('slug','admin')->first();
-        $manageRoles = Permission::where('slug','manage-roles')->first();
+        $driver = Role::where('slug','driver')->first();
 
         $user1 = new User();
         $user1->name = 'Admin';
@@ -23,6 +23,12 @@ class UserSeeder extends Seeder
         $user1->password = bcrypt('password');
         $user1->save();
         $user1->roles()->attach($admin);
-        $user1->permissions()->attach($manageRoles);
+
+        $user2 = new User();
+        $user2->name = 'Driver';
+        $user2->email = 'driver@admin.com';
+        $user2->password = bcrypt('driver');
+        $user2->save();
+        $user2->roles()->attach($driver);
     }
 }

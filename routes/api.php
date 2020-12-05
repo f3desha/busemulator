@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'role:admin'], function() {
+
+});
+
+Route::group(['middleware' => 'role:driver'], function() {
+    Route::get('/go', function (){
+        return 1234;
+    });
+});

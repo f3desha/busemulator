@@ -12,10 +12,10 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $manageRole = new Permission();
-        $manageRole->name = 'Manage roles';
-        $manageRole->slug = 'manage-roles';
-        $manageRole->save();
+//        $manageRole = new Permission();
+//        $manageRole->name = 'Manage roles';
+//        $manageRole->slug = 'manage-roles';
+//        $manageRole->save();
 
     }
 }
