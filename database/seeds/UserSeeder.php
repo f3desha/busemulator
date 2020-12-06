@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Role;
-use App\Permission;
 use App\User;
 
 class UserSeeder extends Seeder
@@ -16,6 +15,7 @@ class UserSeeder extends Seeder
     {
         $admin = Role::where('slug','admin')->first();
         $driver = Role::where('slug','driver')->first();
+        $regularUser = Role::where('slug','user')->first();
 
         $user1 = new User();
         $user1->name = 'Admin';
@@ -30,5 +30,13 @@ class UserSeeder extends Seeder
         $user2->password = bcrypt('driver');
         $user2->save();
         $user2->roles()->attach($driver);
+
+        $user3 = new User();
+        $user3->name = 'Regular';
+        $user3->email = 'user@admin.com';
+        $user3->password = bcrypt('regular');
+        $user3->save();
+        $user3->roles()->attach($regularUser);
+
     }
 }

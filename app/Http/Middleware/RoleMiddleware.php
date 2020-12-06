@@ -18,10 +18,10 @@ class RoleMiddleware
     {
         $user = $request->user();
         if(!$user->hasRole($role)) {
-            abort(404);
+            return response()->json(['msg' => 'Access forbidden'],403);
         }
         if($permission !== null && !$user->can($permission)) {
-            abort(404);
+            return response()->json(['msg' => 'Access forbidden'],403);
         }
         return $next($request);
     }

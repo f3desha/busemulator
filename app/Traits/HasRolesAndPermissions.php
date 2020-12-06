@@ -107,4 +107,14 @@ trait HasRolesAndPermissions
         $this->permissions()->detach();
         return $this->givePermissionsTo($permissions);
     }
+
+    public function changeRole(string $role) : bool{
+        if(!$this->hasRole('admin')){
+            $this->roles()->detach();
+            $role = Role::where('slug',$role)->first();
+            $this->roles()->attach($role);
+            return true;
+        }
+        return false;
+    }
 }
