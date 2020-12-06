@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Route as BusRoute;
-use App\RoutePoint;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -45,11 +44,11 @@ class RouteController extends Controller
      * Add a point to route.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function addPoint(Request $request, BusRoute $route){
+    public function addPoint(Request $request){
         if(!empty($request->routePointId)){
+            $route = BusRoute::find($request->routeId);
             $afterRouteId = null;
             if(!empty($request->routePointId)){
                 $afterRoutePoint = $request->afterRoutePoint;
@@ -63,11 +62,11 @@ class RouteController extends Controller
      * Add a point to route.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
      */
-    public function deletePoint(Request $request, BusRoute $route){
+    public function deletePoint(Request $request){
         if(!empty($request->routePointId)){
+            $route = BusRoute::find($request->routeId);
             $route->removePoint($request->routePointId);
         }
         return response()->json(null, 204);

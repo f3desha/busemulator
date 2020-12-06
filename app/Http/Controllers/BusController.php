@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Bus;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\Bus as BusResource;
 
 class BusController extends Controller
 {
@@ -47,7 +49,7 @@ class BusController extends Controller
      */
     public function show(Bus $bus)
     {
-        return response()->json($bus, 200);
+        return response()->json(new BusResource($bus), 200);
     }
 
     /**
@@ -83,5 +85,75 @@ class BusController extends Controller
     {
         $bus->delete();
         return response()->json(null, 204);
+    }
+
+    /**
+     * Assign driver to bus.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function assignDriver(Request $request)
+    {
+        $user = User::find($request->driverId);
+        if($user && $user->hasRole('driver')){
+            $bus = Bus::find($request->busId);
+            if($bus){
+                $bus->driver_id = $user->id;
+                $bus->update();
+                return response()->json($bus, 200);
+            }
+        }
+    }
+
+    /**
+     * Remove driver from bus.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteDriver(Request $request)
+    {
+        $bus = Bus::find($request->busId);
+        if($bus){
+            $bus->driver_id = null;
+            $bus->update();
+            return response()->json(null, 204);
+        }
+    }
+
+    /**
+     * Assign route to bus.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function assignRoute(Request $request)
+    {
+        $route = User::find($request->routeId);
+        if($route){
+            $bus = Bus::find($request->busId);
+            if($bus){
+                $bus->route_id = $route->id;
+                $bus->update();
+                return response()->json($bus, 200);
+            }
+        }
+    }
+
+    /**
+     * Remove route from bus.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteRoute(Request $request)
+    {
+        $bus = Bus::find($request->busId);
+        if($bus){
+            $bus->route_id = null;
+            $bus->update();
+            return response()->json(null, 204);
+        }
     }
 }

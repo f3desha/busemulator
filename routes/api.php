@@ -14,6 +14,13 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'role:admin'], function() {
+
+    //Add new point to route
+    Route::post('/routes/add-point', 'RouteController@addPoint');
+    //Remove point from route
+    Route::delete('/routes/delete-point', 'RouteController@deletePoint');
+
+
     //Browse all routes
     Route::get('/routes', 'RouteController@index');
     //Read a single route
@@ -25,11 +32,6 @@ Route::group(['middleware' => 'role:admin'], function() {
     //Delete route
     Route::delete('/routes/{route}', 'RouteController@destroy');
 
-
-    //Add new point to route
-    Route::post('/routes/add-point/{route}', 'RouteController@addPoint');
-    //Remove point from route
-    Route::delete('/routes/delete-point/{route}', 'RouteController@deletePoint');
 
 
     //Browse all route points
@@ -54,6 +56,16 @@ Route::group(['middleware' => 'role:admin'], function() {
     Route::delete('/bus-drivers/{id}', 'BusDriverController@destroy');
 
 
+    //Assign new driver to bus
+    Route::post('/buses/assign-driver', 'BusController@assignDriver');
+    //Remove driver from bus
+    Route::delete('/buses/delete-driver', 'BusController@deleteDriver');
+    //Assign route to a bus
+    Route::post('/buses/assign-route', 'BusController@assignRoute');
+    //Remove route from a bus
+    Route::delete('/buses/delete-route', 'BusController@deleteRoute');
+
+
     //Browse all buses
     Route::get('/buses', 'BusController@index');
     //Read a single bus information
@@ -64,6 +76,7 @@ Route::group(['middleware' => 'role:admin'], function() {
     Route::post('/buses', 'BusController@store');
     //Delete bus
     Route::delete('/buses/{bus}', 'BusController@destroy');
+
 });
 
 Route::group(['middleware' => 'role:driver'], function() {
