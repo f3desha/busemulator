@@ -10,8 +10,9 @@ use App\Http\Resources\Bus as BusResource;
 class BusController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display all buses.
+     * @authenticated
+     * @group Buses
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -21,7 +22,7 @@ class BusController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @authenticated
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -30,8 +31,9 @@ class BusController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Store a newly created bus.
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -42,9 +44,14 @@ class BusController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified bus.
      *
-     * @param  \App\Bus  $bus
+     * This endpoint allows you to look the details of a bus.
+     *
+     * @authenticated
+     * @group Buses
+     * @urlParam bus integer required The ID of the Bus.
+     * @param  \App\Bus $bus
      * @return \Illuminate\Http\Response
      */
     public function show(Bus $bus)
@@ -54,7 +61,8 @@ class BusController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @authenticated
+     * @group Buses
      * @param  \App\Bus  $bus
      * @return \Illuminate\Http\Response
      */
@@ -64,8 +72,9 @@ class BusController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Update the specified bus.
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Bus  $bus
      * @return \Illuminate\Http\Response
@@ -76,8 +85,9 @@ class BusController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Remove the specified bus from storage.
+     * @authenticated
+     * @group Buses
      * @param  \App\Bus  $bus
      * @return \Illuminate\Http\Response
      */
@@ -89,7 +99,8 @@ class BusController extends Controller
 
     /**
      * Assign driver to bus.
-     *
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -108,7 +119,8 @@ class BusController extends Controller
 
     /**
      * Remove driver from bus.
-     *
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -124,7 +136,8 @@ class BusController extends Controller
 
     /**
      * Assign route to bus.
-     *
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -143,7 +156,8 @@ class BusController extends Controller
 
     /**
      * Remove route from bus.
-     *
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -159,7 +173,8 @@ class BusController extends Controller
 
     /**
      * Drive a bus.
-     *
+     * @authenticated
+     * @group Buses
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Bus $bus
      * @return \Illuminate\Http\Response

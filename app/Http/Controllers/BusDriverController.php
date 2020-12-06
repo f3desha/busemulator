@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 class BusDriverController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display all drivers.
+     * @authenticated
+     * @group Drivers (role)
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -23,7 +24,7 @@ class BusDriverController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @authenticated
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -33,7 +34,7 @@ class BusDriverController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -43,8 +44,9 @@ class BusDriverController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * Display the specified driver.
+     * @authenticated
+     * @group Drivers (role)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -61,7 +63,7 @@ class BusDriverController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -72,8 +74,9 @@ class BusDriverController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Change users role to Driver.
+     * @authenticated
+     * @group Drivers (role)
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -90,8 +93,9 @@ class BusDriverController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Remove Driver role from user.
+     * @authenticated
+     * @group Drivers (role)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

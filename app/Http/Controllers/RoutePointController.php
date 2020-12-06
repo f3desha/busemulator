@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 class RoutePointController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display all Route Points.
+     * @authenticated
+     * @group Route Points
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -29,8 +30,9 @@ class RoutePointController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Store a newly created Route Point.
+     * @authenticated
+     * @group Route Points
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -41,8 +43,9 @@ class RoutePointController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * Display the specified Route Point.
+     * @authenticated
+     * @group Route Points
      * @param  \App\RoutePoint  $routePoint
      * @return \Illuminate\Http\Response
      */
@@ -63,8 +66,9 @@ class RoutePointController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Update the specified Route Point.
+     * @authenticated
+     * @group Route Points
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\RoutePoint  $routePoint
      * @return \Illuminate\Http\Response
@@ -76,8 +80,9 @@ class RoutePointController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Remove the specified Route Point from storage.
+     * @authenticated
+     * @group Route Points
      * @param  \App\RoutePoint  $routePoint
      * @return \Illuminate\Http\Response
      */

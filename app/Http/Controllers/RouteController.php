@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class RouteController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @group Routes
+     * Display all routes.
+     * @authenticated
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,8 +21,9 @@ class RouteController extends Controller
     }
 
     /**
+     * @group Routes
      * Show the form for creating a new resource.
-     *
+     * @authenticated
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -29,8 +32,9 @@ class RouteController extends Controller
     }
 
     /**
+     * @group Routes
      * Store a newly created resource in storage.
-     *
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -41,8 +45,9 @@ class RouteController extends Controller
     }
 
     /**
+     * @group Routes
      * Add a point to route.
-     *
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -59,8 +64,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Add a point to route.
-     *
+     * @group Routes
+     * Delete a route point from route.
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -73,8 +79,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @group Routes
+     * Display the specified route.
+     * @authenticated
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -87,8 +94,9 @@ class RouteController extends Controller
     }
 
     /**
+     * @group Routes
      * Show the form for editing the specified resource.
-     *
+     * @authenticated
      * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
      */
@@ -98,8 +106,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * @group Routes
+     * Update the specified route.
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
@@ -111,8 +120,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @group Routes
+     * Remove the specified route.
+     * @authenticated
      * @param  \App\Route  $route
      * @return \Illuminate\Http\Response
      */

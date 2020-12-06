@@ -1,0 +1,1751 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css" media="screen" />
+        <link rel="stylesheet" href="css/print.css" media="print" />
+        <script src="js/all.js"></script>
+
+        <link rel="stylesheet" href="css/highlight-darcula.css" media="" />
+        <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="" data-languages="[&quot;bash&quot;,&quot;php&quot;,&quot;javascript&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+            <img src="images/navbar.png" alt="-image" class=""/>
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="bash">bash</a>
+                            <a href="#" data-language-name="php">php</a>
+                            <a href="#" data-language-name="javascript">javascript</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+
+    <ul id="toc">
+    </ul>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="./collection.json">View Postman collection</a></li>
+                            <li><a href="./openapi.yaml">View OpenAPI (Swagger) spec</a></li>
+                            <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: December 6 2020</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script>
+    var baseUrl = "http://localhost";
+</script>
+<script src="js/tryitout-2.4.2.js"></script>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost</code></pre><h1>Authenticating requests</h1>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header in the form <strong><code>"Basic {credentials}"</code></strong>. The value of <code>{credentials}</code> should be your username/id and your password, joined with a colon (:), and then base64-encoded.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Buses</h1>
+<h2>Assign driver to bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/buses/assign-driver" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/buses/assign-driver',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/assign-driver"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-buses-assign-driver" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-buses-assign-driver"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-buses-assign-driver"></code></pre>
+</div>
+<div id="execution-error-POSTapi-buses-assign-driver" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-buses-assign-driver"></code></pre>
+</div>
+<form id="form-POSTapi-buses-assign-driver" data-method="POST" data-path="api/buses/assign-driver" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-buses-assign-driver', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-buses-assign-driver" onclick="tryItOut('POSTapi-buses-assign-driver');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-buses-assign-driver" onclick="cancelTryOut('POSTapi-buses-assign-driver');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-buses-assign-driver" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/buses/assign-driver</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-buses-assign-driver" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-buses-assign-driver" data-component="header"></label>
+</p>
+</form>
+<h2>Remove driver from bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/buses/delete-driver" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/buses/delete-driver',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/delete-driver"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-buses-delete-driver" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-buses-delete-driver"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-buses-delete-driver"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-buses-delete-driver" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-buses-delete-driver"></code></pre>
+</div>
+<form id="form-DELETEapi-buses-delete-driver" data-method="DELETE" data-path="api/buses/delete-driver" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-buses-delete-driver', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-buses-delete-driver" onclick="tryItOut('DELETEapi-buses-delete-driver');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-buses-delete-driver" onclick="cancelTryOut('DELETEapi-buses-delete-driver');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-buses-delete-driver" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/buses/delete-driver</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-buses-delete-driver" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-buses-delete-driver" data-component="header"></label>
+</p>
+</form>
+<h2>Assign route to bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/buses/assign-route" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/buses/assign-route',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/assign-route"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-buses-assign-route" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-buses-assign-route"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-buses-assign-route"></code></pre>
+</div>
+<div id="execution-error-POSTapi-buses-assign-route" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-buses-assign-route"></code></pre>
+</div>
+<form id="form-POSTapi-buses-assign-route" data-method="POST" data-path="api/buses/assign-route" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-buses-assign-route', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-buses-assign-route" onclick="tryItOut('POSTapi-buses-assign-route');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-buses-assign-route" onclick="cancelTryOut('POSTapi-buses-assign-route');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-buses-assign-route" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/buses/assign-route</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-buses-assign-route" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-buses-assign-route" data-component="header"></label>
+</p>
+</form>
+<h2>Remove route from bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/buses/delete-route" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/buses/delete-route',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/delete-route"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-buses-delete-route" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-buses-delete-route"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-buses-delete-route"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-buses-delete-route" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-buses-delete-route"></code></pre>
+</div>
+<form id="form-DELETEapi-buses-delete-route" data-method="DELETE" data-path="api/buses/delete-route" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-buses-delete-route', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-buses-delete-route" onclick="tryItOut('DELETEapi-buses-delete-route');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-buses-delete-route" onclick="cancelTryOut('DELETEapi-buses-delete-route');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-buses-delete-route" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/buses/delete-route</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-buses-delete-route" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-buses-delete-route" data-component="header"></label>
+</p>
+</form>
+<h2>Display all buses.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/buses" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/buses',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-buses" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-buses"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-buses"></code></pre>
+</div>
+<div id="execution-error-GETapi-buses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-buses"></code></pre>
+</div>
+<form id="form-GETapi-buses" data-method="GET" data-path="api/buses" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses" onclick="tryItOut('GETapi-buses');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses" onclick="cancelTryOut('GETapi-buses');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/buses</code></b>
+</p>
+<p>
+<label id="auth-GETapi-buses" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses" data-component="header"></label>
+</p>
+</form>
+<h2>Display the specified bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>This endpoint allows you to look the details of a bus.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/buses/11" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/buses/11',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/11"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-buses--bus-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-buses--bus-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-buses--bus-"></code></pre>
+</div>
+<div id="execution-error-GETapi-buses--bus-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-buses--bus-"></code></pre>
+</div>
+<form id="form-GETapi-buses--bus-" data-method="GET" data-path="api/buses/{bus}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--bus-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--bus-" onclick="tryItOut('GETapi-buses--bus-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--bus-" onclick="cancelTryOut('GETapi-buses--bus-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--bus-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/buses/{bus}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-buses--bus-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--bus-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>bus</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="bus" data-endpoint="GETapi-buses--bus-" data-component="url" required  hidden>
+<br>
+The ID of the Bus.</p>
+</form>
+<h2>Update the specified bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/buses/dolorem" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost/api/buses/dolorem',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/dolorem"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-PUTapi-buses--bus-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-buses--bus-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-buses--bus-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-buses--bus-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-buses--bus-"></code></pre>
+</div>
+<form id="form-PUTapi-buses--bus-" data-method="PUT" data-path="api/buses/{bus}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-buses--bus-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-buses--bus-" onclick="tryItOut('PUTapi-buses--bus-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-buses--bus-" onclick="cancelTryOut('PUTapi-buses--bus-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-buses--bus-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/buses/{bus}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-buses--bus-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-buses--bus-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>bus</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bus" data-endpoint="PUTapi-buses--bus-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Store a newly created bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/buses" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/buses',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-buses" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-buses"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-buses"></code></pre>
+</div>
+<div id="execution-error-POSTapi-buses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-buses"></code></pre>
+</div>
+<form id="form-POSTapi-buses" data-method="POST" data-path="api/buses" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-buses', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-buses" onclick="tryItOut('POSTapi-buses');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-buses" onclick="cancelTryOut('POSTapi-buses');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-buses" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/buses</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-buses" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-buses" data-component="header"></label>
+</p>
+</form>
+<h2>Remove the specified bus from storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/buses/sint" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/buses/sint',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/sint"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-buses--bus-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-buses--bus-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-buses--bus-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-buses--bus-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-buses--bus-"></code></pre>
+</div>
+<form id="form-DELETEapi-buses--bus-" data-method="DELETE" data-path="api/buses/{bus}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-buses--bus-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-buses--bus-" onclick="tryItOut('DELETEapi-buses--bus-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-buses--bus-" onclick="cancelTryOut('DELETEapi-buses--bus-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-buses--bus-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/buses/{bus}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-buses--bus-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-buses--bus-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>bus</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bus" data-endpoint="DELETEapi-buses--bus-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Drive a bus.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/buses/quas/drive" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/buses/quas/drive',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/buses/quas/drive"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-buses--bus--drive" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-buses--bus--drive"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-buses--bus--drive"></code></pre>
+</div>
+<div id="execution-error-GETapi-buses--bus--drive" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-buses--bus--drive"></code></pre>
+</div>
+<form id="form-GETapi-buses--bus--drive" data-method="GET" data-path="api/buses/{bus}/drive" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--bus--drive', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--bus--drive" onclick="tryItOut('GETapi-buses--bus--drive');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--bus--drive" onclick="cancelTryOut('GETapi-buses--bus--drive');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--bus--drive" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/buses/{bus}/drive</code></b>
+</p>
+<p>
+<label id="auth-GETapi-buses--bus--drive" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--bus--drive" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>bus</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bus" data-endpoint="GETapi-buses--bus--drive" data-component="url" required  hidden>
+<br>
+</p>
+</form><h1>Drivers (role)</h1>
+<h2>Display all drivers.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/bus-drivers" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/bus-drivers',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/bus-drivers"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-bus-drivers" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-bus-drivers"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-bus-drivers"></code></pre>
+</div>
+<div id="execution-error-GETapi-bus-drivers" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-bus-drivers"></code></pre>
+</div>
+<form id="form-GETapi-bus-drivers" data-method="GET" data-path="api/bus-drivers" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-bus-drivers', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-bus-drivers" onclick="tryItOut('GETapi-bus-drivers');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-bus-drivers" onclick="cancelTryOut('GETapi-bus-drivers');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-bus-drivers" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/bus-drivers</code></b>
+</p>
+<p>
+<label id="auth-GETapi-bus-drivers" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-bus-drivers" data-component="header"></label>
+</p>
+</form>
+<h2>Display the specified driver.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/bus-drivers/officiis" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/bus-drivers/officiis',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/bus-drivers/officiis"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-bus-drivers--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-bus-drivers--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-bus-drivers--id-"></code></pre>
+</div>
+<div id="execution-error-GETapi-bus-drivers--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-bus-drivers--id-"></code></pre>
+</div>
+<form id="form-GETapi-bus-drivers--id-" data-method="GET" data-path="api/bus-drivers/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-bus-drivers--id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-bus-drivers--id-" onclick="tryItOut('GETapi-bus-drivers--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-bus-drivers--id-" onclick="cancelTryOut('GETapi-bus-drivers--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-bus-drivers--id-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/bus-drivers/{id}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-bus-drivers--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-bus-drivers--id-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-bus-drivers--id-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Change users role to Driver.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/bus-drivers/voluptatibus" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost/api/bus-drivers/voluptatibus',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/bus-drivers/voluptatibus"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-PUTapi-bus-drivers--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-bus-drivers--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-bus-drivers--id-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-bus-drivers--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-bus-drivers--id-"></code></pre>
+</div>
+<form id="form-PUTapi-bus-drivers--id-" data-method="PUT" data-path="api/bus-drivers/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-bus-drivers--id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-bus-drivers--id-" onclick="tryItOut('PUTapi-bus-drivers--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-bus-drivers--id-" onclick="cancelTryOut('PUTapi-bus-drivers--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-bus-drivers--id-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/bus-drivers/{id}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-bus-drivers--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-bus-drivers--id-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="PUTapi-bus-drivers--id-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Remove Driver role from user.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/bus-drivers/dignissimos" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/bus-drivers/dignissimos',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/bus-drivers/dignissimos"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-bus-drivers--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-bus-drivers--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-bus-drivers--id-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-bus-drivers--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-bus-drivers--id-"></code></pre>
+</div>
+<form id="form-DELETEapi-bus-drivers--id-" data-method="DELETE" data-path="api/bus-drivers/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-bus-drivers--id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-bus-drivers--id-" onclick="tryItOut('DELETEapi-bus-drivers--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-bus-drivers--id-" onclick="cancelTryOut('DELETEapi-bus-drivers--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-bus-drivers--id-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/bus-drivers/{id}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-bus-drivers--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-bus-drivers--id-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="DELETEapi-bus-drivers--id-" data-component="url" required  hidden>
+<br>
+</p>
+</form><h1>Route Points</h1>
+<h2>Display all Route Points.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/route-points" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/route-points',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/route-points"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-route-points" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-route-points"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-route-points"></code></pre>
+</div>
+<div id="execution-error-GETapi-route-points" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-route-points"></code></pre>
+</div>
+<form id="form-GETapi-route-points" data-method="GET" data-path="api/route-points" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-route-points', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-route-points" onclick="tryItOut('GETapi-route-points');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-route-points" onclick="cancelTryOut('GETapi-route-points');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-route-points" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/route-points</code></b>
+</p>
+<p>
+<label id="auth-GETapi-route-points" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-route-points" data-component="header"></label>
+</p>
+</form>
+<h2>Display the specified Route Point.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/route-points/voluptates" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/route-points/voluptates',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/route-points/voluptates"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-route-points--routePoint-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-route-points--routePoint-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-route-points--routePoint-"></code></pre>
+</div>
+<div id="execution-error-GETapi-route-points--routePoint-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-route-points--routePoint-"></code></pre>
+</div>
+<form id="form-GETapi-route-points--routePoint-" data-method="GET" data-path="api/route-points/{routePoint}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-route-points--routePoint-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-route-points--routePoint-" onclick="tryItOut('GETapi-route-points--routePoint-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-route-points--routePoint-" onclick="cancelTryOut('GETapi-route-points--routePoint-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-route-points--routePoint-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/route-points/{routePoint}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-route-points--routePoint-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-route-points--routePoint-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>routePoint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="routePoint" data-endpoint="GETapi-route-points--routePoint-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Store a newly created Route Point.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/route-points" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/route-points',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/route-points"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-route-points" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-route-points"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-route-points"></code></pre>
+</div>
+<div id="execution-error-POSTapi-route-points" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-route-points"></code></pre>
+</div>
+<form id="form-POSTapi-route-points" data-method="POST" data-path="api/route-points" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-route-points', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-route-points" onclick="tryItOut('POSTapi-route-points');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-route-points" onclick="cancelTryOut('POSTapi-route-points');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-route-points" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/route-points</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-route-points" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-route-points" data-component="header"></label>
+</p>
+</form>
+<h2>Update the specified Route Point.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/route-points/tenetur" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost/api/route-points/tenetur',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/route-points/tenetur"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-PUTapi-route-points--routePoint-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-route-points--routePoint-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-route-points--routePoint-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-route-points--routePoint-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-route-points--routePoint-"></code></pre>
+</div>
+<form id="form-PUTapi-route-points--routePoint-" data-method="PUT" data-path="api/route-points/{routePoint}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-route-points--routePoint-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-route-points--routePoint-" onclick="tryItOut('PUTapi-route-points--routePoint-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-route-points--routePoint-" onclick="cancelTryOut('PUTapi-route-points--routePoint-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-route-points--routePoint-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/route-points/{routePoint}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-route-points--routePoint-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-route-points--routePoint-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>routePoint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="routePoint" data-endpoint="PUTapi-route-points--routePoint-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Remove the specified Route Point from storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/route-points/dolores" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/route-points/dolores',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/route-points/dolores"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-route-points--routePoint-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-route-points--routePoint-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-route-points--routePoint-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-route-points--routePoint-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-route-points--routePoint-"></code></pre>
+</div>
+<form id="form-DELETEapi-route-points--routePoint-" data-method="DELETE" data-path="api/route-points/{routePoint}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-route-points--routePoint-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-route-points--routePoint-" onclick="tryItOut('DELETEapi-route-points--routePoint-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-route-points--routePoint-" onclick="cancelTryOut('DELETEapi-route-points--routePoint-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-route-points--routePoint-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/route-points/{routePoint}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-route-points--routePoint-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-route-points--routePoint-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>routePoint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="routePoint" data-endpoint="DELETEapi-route-points--routePoint-" data-component="url" required  hidden>
+<br>
+</p>
+</form><h1>Routes</h1>
+<h2>Add a point to route.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/routes/add-point" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/routes/add-point',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes/add-point"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-routes-add-point" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-routes-add-point"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-routes-add-point"></code></pre>
+</div>
+<div id="execution-error-POSTapi-routes-add-point" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-routes-add-point"></code></pre>
+</div>
+<form id="form-POSTapi-routes-add-point" data-method="POST" data-path="api/routes/add-point" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-routes-add-point', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-routes-add-point" onclick="tryItOut('POSTapi-routes-add-point');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-routes-add-point" onclick="cancelTryOut('POSTapi-routes-add-point');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-routes-add-point" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/routes/add-point</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-routes-add-point" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-routes-add-point" data-component="header"></label>
+</p>
+</form>
+<h2>Delete a route point from route.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/routes/delete-point" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/routes/delete-point',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes/delete-point"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-routes-delete-point" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-routes-delete-point"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-routes-delete-point"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-routes-delete-point" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-routes-delete-point"></code></pre>
+</div>
+<form id="form-DELETEapi-routes-delete-point" data-method="DELETE" data-path="api/routes/delete-point" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-routes-delete-point', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-routes-delete-point" onclick="tryItOut('DELETEapi-routes-delete-point');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-routes-delete-point" onclick="cancelTryOut('DELETEapi-routes-delete-point');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-routes-delete-point" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/routes/delete-point</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-routes-delete-point" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-routes-delete-point" data-component="header"></label>
+</p>
+</form>
+<h2>Display all routes.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/routes" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/routes',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-routes" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-routes"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-routes"></code></pre>
+</div>
+<div id="execution-error-GETapi-routes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-routes"></code></pre>
+</div>
+<form id="form-GETapi-routes" data-method="GET" data-path="api/routes" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-routes', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-routes" onclick="tryItOut('GETapi-routes');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-routes" onclick="cancelTryOut('GETapi-routes');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-routes" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/routes</code></b>
+</p>
+<p>
+<label id="auth-GETapi-routes" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-routes" data-component="header"></label>
+</p>
+</form>
+<h2>Display the specified route.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/routes/quis" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/routes/quis',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes/quis"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-GETapi-routes--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-routes--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-routes--id-"></code></pre>
+</div>
+<div id="execution-error-GETapi-routes--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-routes--id-"></code></pre>
+</div>
+<form id="form-GETapi-routes--id-" data-method="GET" data-path="api/routes/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-routes--id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-routes--id-" onclick="tryItOut('GETapi-routes--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-routes--id-" onclick="cancelTryOut('GETapi-routes--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-routes--id-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/routes/{id}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-routes--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-routes--id-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-routes--id-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Update the specified route.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/routes/nam" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost/api/routes/nam',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes/nam"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-PUTapi-routes--route-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-routes--route-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-routes--route-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-routes--route-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-routes--route-"></code></pre>
+</div>
+<form id="form-PUTapi-routes--route-" data-method="PUT" data-path="api/routes/{route}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-routes--route-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-routes--route-" onclick="tryItOut('PUTapi-routes--route-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-routes--route-" onclick="cancelTryOut('PUTapi-routes--route-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-routes--route-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/routes/{route}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-routes--route-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-routes--route-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>route</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="route" data-endpoint="PUTapi-routes--route-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Store a newly created resource in storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/routes" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/routes',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-POSTapi-routes" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-routes"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-routes"></code></pre>
+</div>
+<div id="execution-error-POSTapi-routes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-routes"></code></pre>
+</div>
+<form id="form-POSTapi-routes" data-method="POST" data-path="api/routes" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-routes', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-routes" onclick="tryItOut('POSTapi-routes');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-routes" onclick="cancelTryOut('POSTapi-routes');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-routes" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/routes</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-routes" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-routes" data-component="header"></label>
+</p>
+</form>
+<h2>Remove the specified route.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/routes/iste" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/routes/iste',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/routes/iste"
+);
+
+let headers = {
+    "Authorization": "Basic {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<div id="execution-results-DELETEapi-routes--route-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-routes--route-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-routes--route-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-routes--route-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-routes--route-"></code></pre>
+</div>
+<form id="form-DELETEapi-routes--route-" data-method="DELETE" data-path="api/routes/{route}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-routes--route-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-routes--route-" onclick="tryItOut('DELETEapi-routes--route-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-routes--route-" onclick="cancelTryOut('DELETEapi-routes--route-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-routes--route-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/routes/{route}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-routes--route-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-routes--route-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>route</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="route" data-endpoint="DELETEapi-routes--route-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="php">php</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var languages = ["bash","php","javascript"];
+        setupLanguages(languages);
+    });
+</script>
+</body>
+</html>
