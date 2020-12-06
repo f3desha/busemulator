@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
          $this->call(RoutePointSeeder::class);
          $this->call(RouteSeeder::class);
          $this->call(RouteOrderSeeder::class);
+         $this->call(BusSeeder::class);
 
     }
 }

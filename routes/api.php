@@ -43,20 +43,27 @@ Route::group(['middleware' => 'role:admin'], function() {
     //Delete route points
     Route::delete('/route-points/{routePoint}', 'RoutePointController@destroy');
 
-    //Browse all buses
-    //Read a single bus information
-    //Edit a single bus information
-    //Add a new bus
-    //Delete bus
 
     //Browse all bus drivers
     Route::get('/bus-drivers', 'BusDriverController@index');
     //Read a single bus driver info
     Route::get('/bus-drivers/{id}', 'BusDriverController@show');
     //Set regular user as a Bus driver role (ADD)
-    Route::put('/bus-drivers/{id}', 'BusDriverController@edit');
+    Route::put('/bus-drivers/{id}', 'BusDriverController@update');
     //Remove bus driver role from a user (DELETE)
     Route::delete('/bus-drivers/{id}', 'BusDriverController@destroy');
+
+
+    //Browse all buses
+    Route::get('/buses', 'BusController@index');
+    //Read a single bus information
+    Route::get('/buses/{bus}', 'BusController@show');
+    //Edit a single bus information
+    Route::put('/buses/{bus}', 'BusController@update');
+    //Add a new bus
+    Route::post('/buses', 'BusController@store');
+    //Delete bus
+    Route::delete('/buses/{bus}', 'BusController@destroy');
 });
 
 Route::group(['middleware' => 'role:driver'], function() {

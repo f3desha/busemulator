@@ -68,13 +68,7 @@ class BusDriverController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $user = User::find($id);
-        if($user){
-            if($user->changeRole('driver')){
-                return response()->json(new BusDriverResource($user, 200), 200);
-            }
-        }
-        return response()->json(['Not found'],404);
+
     }
 
     /**
@@ -86,7 +80,13 @@ class BusDriverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if($user){
+            if($user->changeRole('driver')){
+                return response()->json(new BusDriverResource($user, 200), 200);
+            }
+        }
+        return response()->json(['Not found'],404);
     }
 
     /**
