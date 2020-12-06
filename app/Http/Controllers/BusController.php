@@ -156,4 +156,24 @@ class BusController extends Controller
             return response()->json(null, 204);
         }
     }
+
+    /**
+     * Drive a bus.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Bus $bus
+     * @return \Illuminate\Http\Response
+     */
+    public function drive(Request $request, Bus $bus)
+    {
+        //If bus exists, has route, driver, and its driver is current user - drive!
+        if($bus){
+            if(!is_null($bus->route_id)){
+                $user = $request->user();
+                if($user && $user->hasRole('driver') && $user->id === (int)$bus->driver_id){
+                    return response()->json(['You are a driver and riding this bus: '.$bus->model], 200);
+                }
+            }
+        }
+    }
 }

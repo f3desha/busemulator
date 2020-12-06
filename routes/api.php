@@ -81,6 +81,7 @@ Route::group(['middleware' => 'role:admin'], function() {
 
 Route::group(['middleware' => 'role:driver'], function() {
     //Drive a bus to the next route point
+    Route::get('/buses/{bus}/drive', 'BusController@drive');
 
 });
 
