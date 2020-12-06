@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Route as BusRoute;
+use App\RoutePoint;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -41,6 +42,38 @@ class RouteController extends Controller
     }
 
     /**
+     * Add a point to route.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Route  $route
+     * @return \Illuminate\Http\Response
+     */
+    public function addPoint(Request $request, BusRoute $route){
+        if(!empty($request->routePointId)){
+            $afterRouteId = null;
+            if(!empty($request->routePointId)){
+                $afterRoutePoint = $request->afterRoutePoint;
+            }
+            $route->addNewPointToRoute($request->routePointId, $afterRoutePoint);
+        }
+        return response()->json($request, 201);
+    }
+
+    /**
+     * Add a point to route.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Route  $route
+     * @return \Illuminate\Http\Response
+     */
+    public function deletePoint(Request $request, BusRoute $route){
+        if(!empty($request->routePointId)){
+            $route->removePoint($request->routePointId);
+        }
+        return response()->json(null, 204);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -48,8 +81,10 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        $route = BusRoute::find($id);
-        return response()->json($route,200);
+        $route = BusRoute::with('points')->findOrFail($id);
+        $response['route'] = $route;
+        $response['points'] = $route->buildPointsInOrder();
+        return response()->json($response,200);
     }
 
     /**

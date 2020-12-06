@@ -18,13 +18,13 @@ class CreateRouteRoutePointsTable extends Migration
 
             $table->unsignedBigInteger('route_id');
             $table->unsignedBigInteger('route_point_id');
-            $table->unsignedBigInteger('previous_route_point_id');
-            $table->unsignedBigInteger('next_route_point_id');
+            $table->unsignedBigInteger('previous_route_point_id')->nullable();
+            $table->unsignedBigInteger('next_route_point_id')->nullable();
 
-            $table->foreign('route_id')->references('id')->on('route')->onDelete('cascade');
-            $table->foreign('route_point_id')->references('id')->on('route_point')->onDelete('cascade');
-            $table->foreign('previous_route_point_id')->references('id')->on('route_point')->onDelete('cascade');
-            $table->foreign('next_route_point_id')->references('id')->on('route_point')->onDelete('cascade');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
+            $table->foreign('route_point_id')->references('id')->on('route_points')->onDelete('cascade');
+            $table->foreign('previous_route_point_id')->references('id')->on('route_points')->onDelete('cascade');
+            $table->foreign('next_route_point_id')->references('id')->on('route_points')->onDelete('cascade');
 
             $table->timestamps();
         });

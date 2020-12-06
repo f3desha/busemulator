@@ -26,6 +26,12 @@ Route::group(['middleware' => 'role:admin'], function() {
     Route::delete('/routes/{route}', 'RouteController@destroy');
 
 
+    //Add new point to route
+    Route::post('/routes/add-point/{route}', 'RouteController@addPoint');
+    //Remove point from route
+    Route::delete('/routes/delete-point/{route}', 'RouteController@deletePoint');
+
+
     //Browse all route points
     Route::get('/route-points', 'RoutePointController@index');
     //Read single route point

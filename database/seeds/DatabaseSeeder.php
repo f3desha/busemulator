@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
          $this->call(PermissionSeeder::class);
          $this->call(UserSeeder::class);
          $this->call(RoutePointSeeder::class);
+         $this->call(RouteSeeder::class);
+         $this->call(RouteOrderSeeder::class);
 
     }
 }
