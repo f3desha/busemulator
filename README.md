@@ -26,7 +26,7 @@ Bus Emulator API is a product according to next tech spec:
 - Создание CRUD (Create, Read, Update, Delete) для маршрутов, автобусов, водителей
 - Валидация запросов
 
-#Installation
+# Installation
 - Run your local server
 - Run 'composer install' command from terminal
 - Copy .env.example file and change it to .env
