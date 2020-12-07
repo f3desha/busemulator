@@ -13,6 +13,26 @@ paths:
             description: ''
             parameters:
                 -
+                    in: query
+                    name: driverId
+                    description: 'Id of Driver user'
+                    example: 2
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of Driver user'
+                        example: 2
+                -
+                    in: query
+                    name: busId
+                    description: 'Id of bus to assign the driver'
+                    example: 15
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of bus to assign the driver'
+                        example: 15
+                -
                     in: header
                     name: Authorization
                     description: ''
@@ -33,7 +53,29 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                201:
+                    description: '201, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 1
+                                    model: Mercedes
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    model: { type: string, example: Mercedes }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Bus already assigned to this driver'
+                                properties:
+                                    msg: { type: string, example: 'Bus already assigned to this driver' }
             tags:
                 - Buses
     /api/buses/delete-driver:
@@ -42,6 +84,16 @@ paths:
             description: ''
             parameters:
                 -
+                    in: query
+                    name: busId
+                    description: 'Id of bus to remove the driver from'
+                    example: 19
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of bus to remove the driver from'
+                        example: 19
+                -
                     in: header
                     name: Authorization
                     description: ''
@@ -62,7 +114,19 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Bus has no driver assigned'
+                                properties:
+                                    msg: { type: string, example: 'Bus has no driver assigned' }
             tags:
                 - Buses
     /api/buses/assign-route:
@@ -71,6 +135,26 @@ paths:
             description: ''
             parameters:
                 -
+                    in: query
+                    name: routeId
+                    description: 'Id of Route to assign to bus'
+                    example: 18
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of Route to assign to bus'
+                        example: 18
+                -
+                    in: query
+                    name: busId
+                    description: 'Id of bus to assign the driver'
+                    example: 8
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of bus to assign the driver'
+                        example: 8
+                -
                     in: header
                     name: Authorization
                     description: ''
@@ -91,7 +175,29 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                201:
+                    description: '201, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 1
+                                    model: Volvo
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    model: { type: string, example: Volvo }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Route already assigned to this bus'
+                                properties:
+                                    msg: { type: string, example: 'Route already assigned to this bus' }
             tags:
                 - Buses
     /api/buses/delete-route:
@@ -120,7 +226,19 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Bus has no route assigned'
+                                properties:
+                                    msg: { type: string, example: 'Bus has no route assigned' }
             tags:
                 - Buses
     /api/buses:
@@ -149,13 +267,55 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: [{ id: 1, model: Mercedes }]
+                                    first_page_url: 'http://homestead.test/api/buses?page=1'
+                                    from: 1
+                                    last_page: 1
+                                    last_page_url: 'http://homestead.test/api/buses?page=1'
+                                    next_page_url: null
+                                    path: 'http://homestead.test/api/buses'
+                                    per_page: 20
+                                    prev_page_url: null
+                                    to: 1
+                                    total: 1
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: array, example: [{ id: 1, model: Mercedes }], items: { type: object } }
+                                    first_page_url: { type: string, example: 'http://homestead.test/api/buses?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 1 }
+                                    last_page_url: { type: string, example: 'http://homestead.test/api/buses?page=1' }
+                                    next_page_url: { type: string, example: null }
+                                    path: { type: string, example: 'http://homestead.test/api/buses' }
+                                    per_page: { type: integer, example: 20 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 1 }
+                                    total: { type: integer, example: 1 }
             tags:
                 - Buses
         post:
             summary: 'Store a newly created bus.'
             description: ''
             parameters:
+                -
+                    in: query
+                    name: model
+                    description: 'Make of the bus.'
+                    example: eius
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Make of the bus.'
+                        example: eius
                 -
                     in: header
                     name: Authorization
@@ -177,10 +337,32 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                201:
+                    description: '201, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    model: 'Volvo 2'
+                                    id: 2
+                                properties:
+                                    model: { type: string, example: 'Volvo 2' }
+                                    id: { type: integer, example: 2 }
+                400:
+                    description: '400, validation error'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    name: 'The name may not be greater than 10 characters.'
+                                properties:
+                                    name: { type: string, example: 'The name may not be greater than 10 characters.' }
             tags:
                 - Buses
-    '/api/buses/{bus}':
+    '/api/buses/{id}':
         get:
             summary: 'Display the specified bus.'
             description: 'This endpoint allows you to look the details of a bus.'
@@ -206,13 +388,49 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 1
+                                    model: Mercedes
+                                    driver_id: null
+                                    route_id: null
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    model: { type: string, example: Mercedes }
+                                    driver_id: { type: string, example: null }
+                                    route_id: { type: string, example: null }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - Buses
         put:
             summary: 'Update the specified bus.'
             description: ''
             parameters:
+                -
+                    in: query
+                    name: name
+                    description: 'Name of the Bus.'
+                    example: voluptatem
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Name of the Bus.'
+                        example: voluptatem
                 -
                     in: header
                     name: Authorization
@@ -234,7 +452,24 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: boolean
+                                example: true
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - Buses
         delete:
@@ -262,13 +497,25 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found'
+                                properties:
+                                    msg: { type: string, example: 'Not found' }
             tags:
                 - Buses
         parameters:
             -
                 in: path
-                name: bus
+                name: id
                 description: 'The ID of the Bus.'
                 example: 11
                 required: true
@@ -308,7 +555,7 @@ paths:
                 in: path
                 name: bus
                 description: ''
-                example: quas
+                example: sit
                 required: true
                 schema:
                     type: string
@@ -338,7 +585,27 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                example:
+                                    - { id: 2, name: Driver }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                                example:
+                                    - 'Role not found'
             tags:
                 - 'Drivers (role)'
     '/api/bus-drivers/{id}':
@@ -367,7 +634,29 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 2
+                                    name: Driver
+                                properties:
+                                    id: { type: integer, example: 2 }
+                                    name: { type: string, example: Driver }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                                example:
+                                    - 'Role not found'
             tags:
                 - 'Drivers (role)'
         put:
@@ -395,7 +684,29 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 3
+                                    name: Regular
+                                properties:
+                                    id: { type: integer, example: 3 }
+                                    name: { type: string, example: Regular }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                                example:
+                                    - 'Role not found'
             tags:
                 - 'Drivers (role)'
         delete:
@@ -423,22 +734,34 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - 'Drivers (role)'
         parameters:
             -
                 in: path
                 name: id
-                description: ''
-                example: officiis
+                description: 'The ID of the user with Driver role.'
+                example: 8
                 required: true
                 schema:
-                    type: string
+                    type: integer
     /api/route-points:
         get:
             summary: 'Display all Route Points.'
-            description: ''
+            description: 'Route Points is the points, from which Route is build.'
             parameters:
                 -
                     in: header
@@ -461,7 +784,39 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: [{ id: 1, street_name: 'Svyatoslava Rihtera', street_number: '148', lat: '46.4560308', lng: '30.6844385' }, { id: 2, street_name: Gastelo, street_number: '55', lat: '46.450927', lng: '30.684999' }, { id: 3, street_name: 'Borisa Derevyanko', street_number: '2', lat: '46.442794', lng: '30.704637' }]
+                                    first_page_url: 'http://homestead.test/api/route-points?page=1'
+                                    from: 1
+                                    last_page: 1
+                                    last_page_url: 'http://homestead.test/api/route-points?page=1'
+                                    next_page_url: null
+                                    path: 'http://homestead.test/api/route-points'
+                                    per_page: 20
+                                    prev_page_url: null
+                                    to: 3
+                                    total: 3
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: array, example: [{ id: 1, street_name: 'Svyatoslava Rihtera', street_number: '148', lat: '46.4560308', lng: '30.6844385' }, { id: 2, street_name: Gastelo, street_number: '55', lat: '46.450927', lng: '30.684999' }, { id: 3, street_name: 'Borisa Derevyanko', street_number: '2', lat: '46.442794', lng: '30.704637' }], items: { type: object } }
+                                    first_page_url: { type: string, example: 'http://homestead.test/api/route-points?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 1 }
+                                    last_page_url: { type: string, example: 'http://homestead.test/api/route-points?page=1' }
+                                    next_page_url: { type: string, example: null }
+                                    path: { type: string, example: 'http://homestead.test/api/route-points' }
+                                    per_page: { type: integer, example: 20 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 3 }
+                                    total: { type: integer, example: 3 }
             tags:
                 - 'Route Points'
         post:
@@ -469,6 +824,46 @@ paths:
             description: ''
             parameters:
                 -
+                    in: query
+                    name: street_name
+                    description: 'Name of the route point Street.'
+                    example: iure
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Name of the route point Street.'
+                        example: iure
+                -
+                    in: query
+                    name: street_number
+                    description: 'Number of the route point Street.'
+                    example: id
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Number of the route point Street.'
+                        example: id
+                -
+                    in: query
+                    name: lat
+                    description: 'Latitude of the route point in format 1.111111'
+                    example: sed
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Latitude of the route point in format 1.111111'
+                        example: sed
+                -
+                    in: query
+                    name: lng
+                    description: 'Longitude of the route pointin format 1.111111'
+                    example: similique
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Longitude of the route pointin format 1.111111'
+                        example: similique
+                -
                     in: header
                     name: Authorization
                     description: ''
@@ -489,10 +884,38 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                201:
+                    description: '201, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    street_name: 'New street 2'
+                                    street_number: '1'
+                                    lat: '46.442794'
+                                    lng: '30.704637'
+                                    id: 4
+                                properties:
+                                    street_name: { type: string, example: 'New street 2' }
+                                    street_number: { type: string, example: '1' }
+                                    lat: { type: string, example: '46.442794' }
+                                    lng: { type: string, example: '30.704637' }
+                                    id: { type: integer, example: 4 }
+                400:
+                    description: '400, validation error'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    street_number: ['The street number may not be greater than 8 characters.']
+                                properties:
+                                    street_number: { type: array, example: ['The street number may not be greater than 8 characters.'], items: { type: string } }
             tags:
                 - 'Route Points'
-    '/api/route-points/{routePoint}':
+    '/api/route-points/{id}':
         get:
             summary: 'Display the specified Route Point.'
             description: ''
@@ -518,13 +941,81 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 1
+                                    street_name: 'Svyatoslava Rihtera'
+                                    street_number: '148'
+                                    lat: '46.4560308'
+                                    lng: '30.6844385'
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    street_name: { type: string, example: 'Svyatoslava Rihtera' }
+                                    street_number: { type: string, example: '148' }
+                                    lat: { type: string, example: '46.4560308' }
+                                    lng: { type: string, example: '30.6844385' }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - 'Route Points'
         put:
             summary: 'Update the specified Route Point.'
             description: ''
             parameters:
+                -
+                    in: query
+                    name: street_name
+                    description: 'Name of the route point Street.'
+                    example: aliquid
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Name of the route point Street.'
+                        example: aliquid
+                -
+                    in: query
+                    name: street_number
+                    description: 'Number of the route point Street.'
+                    example: nam
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Number of the route point Street.'
+                        example: nam
+                -
+                    in: query
+                    name: lat
+                    description: 'Latitude of the route point in format 1.111111'
+                    example: est
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Latitude of the route point in format 1.111111'
+                        example: est
+                -
+                    in: query
+                    name: lng
+                    description: 'Longitude of the route pointin format 1.111111'
+                    example: rem
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Longitude of the route pointin format 1.111111'
+                        example: rem
                 -
                     in: header
                     name: Authorization
@@ -546,7 +1037,35 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 2
+                                    street_name: 'test change'
+                                    street_number: '222'
+                                    lat: '1.211'
+                                    lng: '2.161'
+                                properties:
+                                    id: { type: integer, example: 2 }
+                                    street_name: { type: string, example: 'test change' }
+                                    street_number: { type: string, example: '222' }
+                                    lat: { type: string, example: '1.211' }
+                                    lng: { type: string, example: '2.161' }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - 'Route Points'
         delete:
@@ -574,23 +1093,65 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - 'Route Points'
         parameters:
             -
                 in: path
-                name: routePoint
-                description: ''
-                example: voluptates
+                name: id
+                description: 'The ID of the route point.'
+                example: 19
                 required: true
                 schema:
-                    type: string
+                    type: integer
     /api/routes/add-point:
         post:
-            summary: 'Add a point to route.'
+            summary: "Add a point to route.\n\nRoute is a data structure that is build base on routes, saving their order."
             description: ''
             parameters:
+                -
+                    in: query
+                    name: routeId
+                    description: 'Id of the route where route point should be added.'
+                    example: 13
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of the route where route point should be added.'
+                        example: 13
+                -
+                    in: query
+                    name: routePointId
+                    description: 'Id of the route point, which should be added to route.'
+                    example: 6
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of the route point, which should be added to route.'
+                        example: 6
+                -
+                    in: query
+                    name: afterRoutePoint
+                    description: 'Id of the route point, after which should be added to route. If not set, new route point will be added as last.'
+                    example: 10
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Id of the route point, after which should be added to route. If not set, new route point will be added as last.'
+                        example: 10
                 -
                     in: header
                     name: Authorization
@@ -612,7 +1173,29 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                201:
+                    description: '201, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    route: { id: 1, name: 'Route №12', created_at: '2020-12-06 19:08:02', updated_at: '2020-12-06 19:08:02' }
+                                    points: [{ id: 1, street_name: 'Svyatoslava Rihtera', street_number: '148', lat: '46.4560308', lng: '30.6844385', pivot: { route_id: '1', route_point_id: '1' } }, { id: 3, street_name: 'Borisa Derevyanko', street_number: '2', lat: '46.442794', lng: '30.704637', pivot: { route_id: '1', route_point_id: '3' } }, { id: 2, street_name: Gastelo, street_number: '55', lat: '46.450927', lng: '30.684999', pivot: { route_id: '1', route_point_id: '2' } }]
+                                properties:
+                                    route: { type: object, example: { id: 1, name: 'Route №12', created_at: '2020-12-06 19:08:02', updated_at: '2020-12-06 19:08:02' } }
+                                    points: { type: array, example: [{ id: 1, street_name: 'Svyatoslava Rihtera', street_number: '148', lat: '46.4560308', lng: '30.6844385', pivot: { route_id: '1', route_point_id: '1' } }, { id: 3, street_name: 'Borisa Derevyanko', street_number: '2', lat: '46.442794', lng: '30.704637', pivot: { route_id: '1', route_point_id: '3' } }, { id: 2, street_name: Gastelo, street_number: '55', lat: '46.450927', lng: '30.684999', pivot: { route_id: '1', route_point_id: '2' } }], items: { type: object } }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - Routes
     /api/routes/delete-point:
@@ -621,6 +1204,26 @@ paths:
             description: ''
             parameters:
                 -
+                    in: query
+                    name: routeId
+                    description: 'Id of the route where route point should be deleted from.'
+                    example: 10
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of the route where route point should be deleted from.'
+                        example: 10
+                -
+                    in: query
+                    name: routePointId
+                    description: 'Id of the route point, which should be deleted from route.'
+                    example: 12
+                    required: true
+                    schema:
+                        type: integer
+                        description: 'Id of the route point, which should be deleted from route.'
+                        example: 12
+                -
                     in: header
                     name: Authorization
                     description: ''
@@ -641,7 +1244,19 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found'
+                                properties:
+                                    msg: { type: string, example: 'Not found' }
             tags:
                 - Routes
     /api/routes:
@@ -670,13 +1285,55 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: [{ id: 1, name: 'Route №12', created_at: '2020-12-06 19:08:02', updated_at: '2020-12-06 19:08:02' }]
+                                    first_page_url: 'http://homestead.test/api/routes?page=1'
+                                    from: 1
+                                    last_page: 1
+                                    last_page_url: 'http://homestead.test/api/routes?page=1'
+                                    next_page_url: null
+                                    path: 'http://homestead.test/api/routes'
+                                    per_page: 20
+                                    prev_page_url: null
+                                    to: 1
+                                    total: 1
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: array, example: [{ id: 1, name: 'Route №12', created_at: '2020-12-06 19:08:02', updated_at: '2020-12-06 19:08:02' }], items: { type: object } }
+                                    first_page_url: { type: string, example: 'http://homestead.test/api/routes?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 1 }
+                                    last_page_url: { type: string, example: 'http://homestead.test/api/routes?page=1' }
+                                    next_page_url: { type: string, example: null }
+                                    path: { type: string, example: 'http://homestead.test/api/routes' }
+                                    per_page: { type: integer, example: 20 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 1 }
+                                    total: { type: integer, example: 1 }
             tags:
                 - Routes
         post:
-            summary: 'Store a newly created resource in storage.'
+            summary: 'Store a newly created route.'
             description: ''
             parameters:
+                -
+                    in: query
+                    name: name
+                    description: 'Name of the route.'
+                    example: minima
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Name of the route.'
+                        example: minima
                 -
                     in: header
                     name: Authorization
@@ -698,7 +1355,33 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                201:
+                    description: '201, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    name: 'Route №15'
+                                    updated_at: '2020-12-07 07:33:32'
+                                    created_at: '2020-12-07 07:33:32'
+                                    id: 2
+                                properties:
+                                    name: { type: string, example: 'Route №15' }
+                                    updated_at: { type: string, example: '2020-12-07 07:33:32' }
+                                    created_at: { type: string, example: '2020-12-07 07:33:32' }
+                                    id: { type: integer, example: 2 }
+                400:
+                    description: '400, validation error'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    name: 'The name may not be greater than 10 characters.'
+                                properties:
+                                    name: { type: string, example: 'The name may not be greater than 10 characters.' }
             tags:
                 - Routes
     '/api/routes/{id}':
@@ -727,23 +1410,45 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    route: { id: 1, name: 'Route №12', created_at: '2020-12-06 19:08:02', updated_at: '2020-12-06 19:08:02' }
+                                    points: [{ id: 1, street_name: 'Svyatoslava Rihtera', street_number: '148', lat: '46.4560308', lng: '30.6844385', pivot: { route_id: '1', route_point_id: '1' } }, { id: 3, street_name: 'Borisa Derevyanko', street_number: '2', lat: '46.442794', lng: '30.704637', pivot: { route_id: '1', route_point_id: '3' } }, { id: 2, street_name: Gastelo, street_number: '55', lat: '46.450927', lng: '30.684999', pivot: { route_id: '1', route_point_id: '2' } }]
+                                properties:
+                                    route: { type: object, example: { id: 1, name: 'Route №12', created_at: '2020-12-06 19:08:02', updated_at: '2020-12-06 19:08:02' } }
+                                    points: { type: array, example: [{ id: 1, street_name: 'Svyatoslava Rihtera', street_number: '148', lat: '46.4560308', lng: '30.6844385', pivot: { route_id: '1', route_point_id: '1' } }, { id: 3, street_name: 'Borisa Derevyanko', street_number: '2', lat: '46.442794', lng: '30.704637', pivot: { route_id: '1', route_point_id: '3' } }, { id: 2, street_name: Gastelo, street_number: '55', lat: '46.450927', lng: '30.684999', pivot: { route_id: '1', route_point_id: '2' } }], items: { type: object } }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - Routes
-        parameters:
-            -
-                in: path
-                name: id
-                description: ''
-                example: quis
-                required: true
-                schema:
-                    type: string
-    '/api/routes/{route}':
         put:
             summary: 'Update the specified route.'
             description: ''
             parameters:
+                -
+                    in: query
+                    name: name
+                    description: 'Name of the route.'
+                    example: iste
+                    required: true
+                    schema:
+                        type: string
+                        description: 'Name of the route.'
+                        example: iste
                 -
                     in: header
                     name: Authorization
@@ -765,7 +1470,33 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: '200, success'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    id: 4
+                                    name: 'Route №123'
+                                    created_at: '2020-12-07 07:52:22'
+                                    updated_at: '2020-12-07 08:35:57'
+                                properties:
+                                    id: { type: integer, example: 4 }
+                                    name: { type: string, example: 'Route №123' }
+                                    created_at: { type: string, example: '2020-12-07 07:52:22' }
+                                    updated_at: { type: string, example: '2020-12-07 08:35:57' }
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - Routes
         delete:
@@ -793,18 +1524,30 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                204:
+                    description: '204, success'
+                404:
+                    description: '404, not found'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    msg: 'Not found.'
+                                properties:
+                                    msg: { type: string, example: 'Not found.' }
             tags:
                 - Routes
         parameters:
             -
                 in: path
-                name: route
-                description: ''
-                example: nam
+                name: id
+                description: 'The ID of the route.'
+                example: 7
                 required: true
                 schema:
-                    type: string
+                    type: integer
 components:
     securitySchemes:
         default:

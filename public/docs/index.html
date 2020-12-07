@@ -45,7 +45,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: December 6 2020</li>
+            <li>Last updated: December 7 2020</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -73,7 +73,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/buses/assign-driver" \
+    "http://localhost/api/buses/assign-driver?driverId=2&amp;busId=15" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -87,6 +87,10 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'driverId'=&gt; '2',
+            'busId'=&gt; '15',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -94,6 +98,13 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/buses/assign-driver"
 );
+
+let params = {
+    "driverId": "2",
+    "busId": "15",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -105,6 +116,37 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "model": "Mercedes"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "User is not a Driver"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Driver not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus already assigned to this driver"
+}</code></pre>
 <div id="execution-results-POSTapi-buses-assign-driver" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-buses-assign-driver"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-buses-assign-driver"></code></pre>
@@ -127,6 +169,17 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-buses-assign-driver" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-buses-assign-driver" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>driverId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="driverId" data-endpoint="POSTapi-buses-assign-driver" data-component="query" required  hidden>
+<br>
+Id of Driver user</p>
+<p>
+<b><code>busId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="busId" data-endpoint="POSTapi-buses-assign-driver" data-component="query" required  hidden>
+<br>
+Id of bus to assign the driver</p>
 </form>
 <h2>Remove driver from bus.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -134,7 +187,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/buses/delete-driver" \
+    "http://localhost/api/buses/delete-driver?busId=19" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -148,6 +201,9 @@ $response = $client-&gt;delete(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'busId'=&gt; '19',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -155,6 +211,12 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/buses/delete-driver"
 );
+
+let params = {
+    "busId": "19",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -166,6 +228,22 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus has no driver assigned"
+}</code></pre>
 <div id="execution-results-DELETEapi-buses-delete-driver" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEapi-buses-delete-driver"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEapi-buses-delete-driver"></code></pre>
@@ -188,6 +266,12 @@ fetch(url, {
 <p>
 <label id="auth-DELETEapi-buses-delete-driver" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-buses-delete-driver" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>busId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="busId" data-endpoint="DELETEapi-buses-delete-driver" data-component="query" required  hidden>
+<br>
+Id of bus to remove the driver from</p>
 </form>
 <h2>Assign route to bus.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -195,7 +279,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/buses/assign-route" \
+    "http://localhost/api/buses/assign-route?routeId=18&amp;busId=8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -209,6 +293,10 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'routeId'=&gt; '18',
+            'busId'=&gt; '8',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -216,6 +304,13 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/buses/assign-route"
 );
+
+let params = {
+    "routeId": "18",
+    "busId": "8",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -227,6 +322,31 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "model": "Volvo"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Route not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Route already assigned to this bus"
+}</code></pre>
 <div id="execution-results-POSTapi-buses-assign-route" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-buses-assign-route"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-buses-assign-route"></code></pre>
@@ -249,6 +369,17 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-buses-assign-route" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-buses-assign-route" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>routeId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="routeId" data-endpoint="POSTapi-buses-assign-route" data-component="query" required  hidden>
+<br>
+Id of Route to assign to bus</p>
+<p>
+<b><code>busId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="busId" data-endpoint="POSTapi-buses-assign-route" data-component="query" required  hidden>
+<br>
+Id of bus to assign the driver</p>
 </form>
 <h2>Remove route from bus.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -288,6 +419,22 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus has no route assigned"
+}</code></pre>
 <div id="execution-results-DELETEapi-buses-delete-route" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEapi-buses-delete-route"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEapi-buses-delete-route"></code></pre>
@@ -349,6 +496,28 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "model": "Mercedes"
+        }
+    ],
+    "first_page_url": "http:\/\/homestead.test\/api\/buses?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/homestead.test\/api\/buses?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/homestead.test\/api\/buses",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
 <div id="execution-results-GETapi-buses" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-buses"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-buses"></code></pre>
@@ -411,32 +580,47 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-GETapi-buses--bus-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-buses--bus-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-buses--bus-"></code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "model": "Mercedes",
+    "driver_id": null,
+    "route_id": null
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-GETapi-buses--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-buses--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-buses--id-"></code></pre>
 </div>
-<div id="execution-error-GETapi-buses--bus-" hidden>
+<div id="execution-error-GETapi-buses--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-buses--bus-"></code></pre>
+    <pre><code id="execution-error-message-GETapi-buses--id-"></code></pre>
 </div>
-<form id="form-GETapi-buses--bus-" data-method="GET" data-path="api/buses/{bus}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--bus-', this);">
+<form id="form-GETapi-buses--id-" data-method="GET" data-path="api/buses/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--bus-" onclick="tryItOut('GETapi-buses--bus-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--bus-" onclick="cancelTryOut('GETapi-buses--bus-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--bus-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--id-" onclick="tryItOut('GETapi-buses--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--id-" onclick="cancelTryOut('GETapi-buses--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>api/buses/{bus}</code></b>
+ <b><code>api/buses/{id}</code></b>
 </p>
 <p>
-<label id="auth-GETapi-buses--bus-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--bus-" data-component="header"></label>
+<label id="auth-GETapi-buses--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>bus</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="bus" data-endpoint="GETapi-buses--bus-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="GETapi-buses--id-" data-component="url" required  hidden>
 <br>
 The ID of the Bus.</p>
 </form>
@@ -446,27 +630,36 @@ The ID of the Bus.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/buses/dolorem" \
+    "http://localhost/api/buses/2?name=voluptatem" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/buses/dolorem',
+    'http://localhost/api/buses/2',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'name'=&gt; 'voluptatem',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/dolorem"
+    "http://localhost/api/buses/2"
 );
+
+let params = {
+    "name": "voluptatem",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -478,34 +671,50 @@ fetch(url, {
     method: "PUT",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-PUTapi-buses--bus-" hidden>
-    <blockquote>Received response<span id="execution-response-status-PUTapi-buses--bus-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-buses--bus-"></code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">true</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-PUTapi-buses--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-buses--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-buses--id-"></code></pre>
 </div>
-<div id="execution-error-PUTapi-buses--bus-" hidden>
+<div id="execution-error-PUTapi-buses--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-buses--bus-"></code></pre>
+    <pre><code id="execution-error-message-PUTapi-buses--id-"></code></pre>
 </div>
-<form id="form-PUTapi-buses--bus-" data-method="PUT" data-path="api/buses/{bus}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-buses--bus-', this);">
+<form id="form-PUTapi-buses--id-" data-method="PUT" data-path="api/buses/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-buses--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-buses--bus-" onclick="tryItOut('PUTapi-buses--bus-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-buses--bus-" onclick="cancelTryOut('PUTapi-buses--bus-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-buses--bus-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-buses--id-" onclick="tryItOut('PUTapi-buses--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-buses--id-" onclick="cancelTryOut('PUTapi-buses--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-buses--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
- <b><code>api/buses/{bus}</code></b>
+ <b><code>api/buses/{id}</code></b>
 </p>
 <p>
-<label id="auth-PUTapi-buses--bus-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-buses--bus-" data-component="header"></label>
+<label id="auth-PUTapi-buses--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-buses--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>bus</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bus" data-endpoint="PUTapi-buses--bus-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="PUTapi-buses--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the Bus.</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="name" data-endpoint="PUTapi-buses--id-" data-component="query" required  hidden>
+<br>
+Name of the Bus.</p>
 </form>
 <h2>Store a newly created bus.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -513,7 +722,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/buses" \
+    "http://localhost/api/buses?model=eius" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -527,6 +736,9 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'model'=&gt; 'eius',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -534,6 +746,12 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/buses"
 );
+
+let params = {
+    "model": "eius",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -545,6 +763,19 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "model": "Volvo 2",
+    "id": 2
+}</code></pre>
+<blockquote>
+<p>Example response (400, validation error):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "name": "The name may not be greater than 10 characters."
+}</code></pre>
 <div id="execution-results-POSTapi-buses" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-buses"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-buses"></code></pre>
@@ -567,6 +798,12 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-buses" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-buses" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>model</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="model" data-endpoint="POSTapi-buses" data-component="query" required  hidden>
+<br>
+Make of the bus.</p>
 </form>
 <h2>Remove the specified bus from storage.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -574,14 +811,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/buses/sint" \
+    "http://localhost/api/buses/15" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/buses/sint',
+    'http://localhost/api/buses/15',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -593,7 +830,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/sint"
+    "http://localhost/api/buses/15"
 );
 
 let headers = {
@@ -606,34 +843,44 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-DELETEapi-buses--bus-" hidden>
-    <blockquote>Received response<span id="execution-response-status-DELETEapi-buses--bus-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-buses--bus-"></code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found"
+}</code></pre>
+<div id="execution-results-DELETEapi-buses--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-buses--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-buses--id-"></code></pre>
 </div>
-<div id="execution-error-DELETEapi-buses--bus-" hidden>
+<div id="execution-error-DELETEapi-buses--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-buses--bus-"></code></pre>
+    <pre><code id="execution-error-message-DELETEapi-buses--id-"></code></pre>
 </div>
-<form id="form-DELETEapi-buses--bus-" data-method="DELETE" data-path="api/buses/{bus}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-buses--bus-', this);">
+<form id="form-DELETEapi-buses--id-" data-method="DELETE" data-path="api/buses/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-buses--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-buses--bus-" onclick="tryItOut('DELETEapi-buses--bus-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-buses--bus-" onclick="cancelTryOut('DELETEapi-buses--bus-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-buses--bus-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-buses--id-" onclick="tryItOut('DELETEapi-buses--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-buses--id-" onclick="cancelTryOut('DELETEapi-buses--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-buses--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
- <b><code>api/buses/{bus}</code></b>
+ <b><code>api/buses/{id}</code></b>
 </p>
 <p>
-<label id="auth-DELETEapi-buses--bus-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-buses--bus-" data-component="header"></label>
+<label id="auth-DELETEapi-buses--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-buses--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>bus</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bus" data-endpoint="DELETEapi-buses--bus-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="DELETEapi-buses--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the bus.</p>
 </form>
 <h2>Drive a bus.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -641,14 +888,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/buses/quas/drive" \
+    -G "http://localhost/api/buses/sit/drive" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/buses/quas/drive',
+    'http://localhost/api/buses/sit/drive',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -660,7 +907,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/quas/drive"
+    "http://localhost/api/buses/sit/drive"
 );
 
 let headers = {
@@ -740,6 +987,21 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 2,
+        "name": "Driver"
+    }
+]</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">[
+    "Role not found"
+]</code></pre>
 <div id="execution-results-GETapi-bus-drivers" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-bus-drivers"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-bus-drivers"></code></pre>
@@ -769,14 +1031,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/bus-drivers/officiis" \
+    -G "http://localhost/api/bus-drivers/8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/bus-drivers/officiis',
+    'http://localhost/api/bus-drivers/8',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -788,7 +1050,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/bus-drivers/officiis"
+    "http://localhost/api/bus-drivers/8"
 );
 
 let headers = {
@@ -801,6 +1063,25 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 2,
+    "name": "Driver"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">[
+    "User not found"
+]</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">[
+    "Role not found"
+]</code></pre>
 <div id="execution-results-GETapi-bus-drivers--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-bus-drivers--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-bus-drivers--id-"></code></pre>
@@ -825,10 +1106,10 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="GETapi-bus-drivers--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="GETapi-bus-drivers--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the user with Driver role.</p>
 </form>
 <h2>Change users role to Driver.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -836,14 +1117,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/bus-drivers/voluptatibus" \
+    "http://localhost/api/bus-drivers/9" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/bus-drivers/voluptatibus',
+    'http://localhost/api/bus-drivers/9',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -855,7 +1136,7 @@ $response = $client-&gt;put(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/bus-drivers/voluptatibus"
+    "http://localhost/api/bus-drivers/9"
 );
 
 let headers = {
@@ -868,6 +1149,19 @@ fetch(url, {
     method: "PUT",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 3,
+    "name": "Regular"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">[
+    "Role not found"
+]</code></pre>
 <div id="execution-results-PUTapi-bus-drivers--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-PUTapi-bus-drivers--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-PUTapi-bus-drivers--id-"></code></pre>
@@ -892,10 +1186,10 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="PUTapi-bus-drivers--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="PUTapi-bus-drivers--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the user with Driver role.</p>
 </form>
 <h2>Remove Driver role from user.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -903,14 +1197,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/bus-drivers/dignissimos" \
+    "http://localhost/api/bus-drivers/5" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/bus-drivers/dignissimos',
+    'http://localhost/api/bus-drivers/5',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -922,7 +1216,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/bus-drivers/dignissimos"
+    "http://localhost/api/bus-drivers/5"
 );
 
 let headers = {
@@ -935,6 +1229,16 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
 <div id="execution-results-DELETEapi-bus-drivers--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEapi-bus-drivers--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEapi-bus-drivers--id-"></code></pre>
@@ -959,13 +1263,14 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="DELETEapi-bus-drivers--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="DELETEapi-bus-drivers--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the user with Driver role.</p>
 </form><h1>Route Points</h1>
 <h2>Display all Route Points.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Route Points is the points, from which Route is build.</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -1002,6 +1307,45 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "street_name": "Svyatoslava Rihtera",
+            "street_number": "148",
+            "lat": "46.4560308",
+            "lng": "30.6844385"
+        },
+        {
+            "id": 2,
+            "street_name": "Gastelo",
+            "street_number": "55",
+            "lat": "46.450927",
+            "lng": "30.684999"
+        },
+        {
+            "id": 3,
+            "street_name": "Borisa Derevyanko",
+            "street_number": "2",
+            "lat": "46.442794",
+            "lng": "30.704637"
+        }
+    ],
+    "first_page_url": "http:\/\/homestead.test\/api\/route-points?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/homestead.test\/api\/route-points?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/homestead.test\/api\/route-points",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 3,
+    "total": 3
+}</code></pre>
 <div id="execution-results-GETapi-route-points" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-route-points"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-route-points"></code></pre>
@@ -1031,14 +1375,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/route-points/voluptates" \
+    -G "http://localhost/api/route-points/19" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/route-points/voluptates',
+    'http://localhost/api/route-points/19',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1050,7 +1394,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/route-points/voluptates"
+    "http://localhost/api/route-points/19"
 );
 
 let headers = {
@@ -1063,34 +1407,50 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-GETapi-route-points--routePoint-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-route-points--routePoint-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-route-points--routePoint-"></code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "street_name": "Svyatoslava Rihtera",
+    "street_number": "148",
+    "lat": "46.4560308",
+    "lng": "30.6844385"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-GETapi-route-points--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-route-points--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-route-points--id-"></code></pre>
 </div>
-<div id="execution-error-GETapi-route-points--routePoint-" hidden>
+<div id="execution-error-GETapi-route-points--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-route-points--routePoint-"></code></pre>
+    <pre><code id="execution-error-message-GETapi-route-points--id-"></code></pre>
 </div>
-<form id="form-GETapi-route-points--routePoint-" data-method="GET" data-path="api/route-points/{routePoint}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-route-points--routePoint-', this);">
+<form id="form-GETapi-route-points--id-" data-method="GET" data-path="api/route-points/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-route-points--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-route-points--routePoint-" onclick="tryItOut('GETapi-route-points--routePoint-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-route-points--routePoint-" onclick="cancelTryOut('GETapi-route-points--routePoint-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-route-points--routePoint-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-route-points--id-" onclick="tryItOut('GETapi-route-points--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-route-points--id-" onclick="cancelTryOut('GETapi-route-points--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-route-points--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>api/route-points/{routePoint}</code></b>
+ <b><code>api/route-points/{id}</code></b>
 </p>
 <p>
-<label id="auth-GETapi-route-points--routePoint-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-route-points--routePoint-" data-component="header"></label>
+<label id="auth-GETapi-route-points--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-route-points--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>routePoint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="routePoint" data-endpoint="GETapi-route-points--routePoint-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="GETapi-route-points--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the route point.</p>
 </form>
 <h2>Store a newly created Route Point.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1098,7 +1458,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/route-points" \
+    "http://localhost/api/route-points?street_name=iure&amp;street_number=id&amp;lat=sed&amp;lng=similique" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1112,6 +1472,12 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'street_name'=&gt; 'iure',
+            'street_number'=&gt; 'id',
+            'lat'=&gt; 'sed',
+            'lng'=&gt; 'similique',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -1119,6 +1485,15 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/route-points"
 );
+
+let params = {
+    "street_name": "iure",
+    "street_number": "id",
+    "lat": "sed",
+    "lng": "similique",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -1130,6 +1505,24 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "street_name": "New street 2",
+    "street_number": "1",
+    "lat": "46.442794",
+    "lng": "30.704637",
+    "id": 4
+}</code></pre>
+<blockquote>
+<p>Example response (400, validation error):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "street_number": [
+        "The street number may not be greater than 8 characters."
+    ]
+}</code></pre>
 <div id="execution-results-POSTapi-route-points" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-route-points"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-route-points"></code></pre>
@@ -1152,6 +1545,27 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-route-points" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-route-points" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>street_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="street_name" data-endpoint="POSTapi-route-points" data-component="query" required  hidden>
+<br>
+Name of the route point Street.</p>
+<p>
+<b><code>street_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="street_number" data-endpoint="POSTapi-route-points" data-component="query" required  hidden>
+<br>
+Number of the route point Street.</p>
+<p>
+<b><code>lat</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="lat" data-endpoint="POSTapi-route-points" data-component="query" required  hidden>
+<br>
+Latitude of the route point in format 1.111111</p>
+<p>
+<b><code>lng</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="lng" data-endpoint="POSTapi-route-points" data-component="query" required  hidden>
+<br>
+Longitude of the route pointin format 1.111111</p>
 </form>
 <h2>Update the specified Route Point.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1159,27 +1573,42 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/route-points/tenetur" \
+    "http://localhost/api/route-points/2?street_name=aliquid&amp;street_number=nam&amp;lat=est&amp;lng=rem" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/route-points/tenetur',
+    'http://localhost/api/route-points/2',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'street_name'=&gt; 'aliquid',
+            'street_number'=&gt; 'nam',
+            'lat'=&gt; 'est',
+            'lng'=&gt; 'rem',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/route-points/tenetur"
+    "http://localhost/api/route-points/2"
 );
+
+let params = {
+    "street_name": "aliquid",
+    "street_number": "nam",
+    "lat": "est",
+    "lng": "rem",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -1191,34 +1620,71 @@ fetch(url, {
     method: "PUT",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-PUTapi-route-points--routePoint-" hidden>
-    <blockquote>Received response<span id="execution-response-status-PUTapi-route-points--routePoint-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-route-points--routePoint-"></code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 2,
+    "street_name": "test change",
+    "street_number": "222",
+    "lat": "1.211",
+    "lng": "2.161"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-PUTapi-route-points--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-route-points--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-route-points--id-"></code></pre>
 </div>
-<div id="execution-error-PUTapi-route-points--routePoint-" hidden>
+<div id="execution-error-PUTapi-route-points--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-route-points--routePoint-"></code></pre>
+    <pre><code id="execution-error-message-PUTapi-route-points--id-"></code></pre>
 </div>
-<form id="form-PUTapi-route-points--routePoint-" data-method="PUT" data-path="api/route-points/{routePoint}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-route-points--routePoint-', this);">
+<form id="form-PUTapi-route-points--id-" data-method="PUT" data-path="api/route-points/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-route-points--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-route-points--routePoint-" onclick="tryItOut('PUTapi-route-points--routePoint-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-route-points--routePoint-" onclick="cancelTryOut('PUTapi-route-points--routePoint-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-route-points--routePoint-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-route-points--id-" onclick="tryItOut('PUTapi-route-points--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-route-points--id-" onclick="cancelTryOut('PUTapi-route-points--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-route-points--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
- <b><code>api/route-points/{routePoint}</code></b>
+ <b><code>api/route-points/{id}</code></b>
 </p>
 <p>
-<label id="auth-PUTapi-route-points--routePoint-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-route-points--routePoint-" data-component="header"></label>
+<label id="auth-PUTapi-route-points--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-route-points--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>routePoint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="routePoint" data-endpoint="PUTapi-route-points--routePoint-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="PUTapi-route-points--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the route point.</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>street_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="street_name" data-endpoint="PUTapi-route-points--id-" data-component="query" required  hidden>
+<br>
+Name of the route point Street.</p>
+<p>
+<b><code>street_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="street_number" data-endpoint="PUTapi-route-points--id-" data-component="query" required  hidden>
+<br>
+Number of the route point Street.</p>
+<p>
+<b><code>lat</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="lat" data-endpoint="PUTapi-route-points--id-" data-component="query" required  hidden>
+<br>
+Latitude of the route point in format 1.111111</p>
+<p>
+<b><code>lng</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="lng" data-endpoint="PUTapi-route-points--id-" data-component="query" required  hidden>
+<br>
+Longitude of the route pointin format 1.111111</p>
 </form>
 <h2>Remove the specified Route Point from storage.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1226,14 +1692,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/route-points/dolores" \
+    "http://localhost/api/route-points/12" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/route-points/dolores',
+    'http://localhost/api/route-points/12',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1245,7 +1711,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/route-points/dolores"
+    "http://localhost/api/route-points/12"
 );
 
 let headers = {
@@ -1258,42 +1724,53 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-DELETEapi-route-points--routePoint-" hidden>
-    <blockquote>Received response<span id="execution-response-status-DELETEapi-route-points--routePoint-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-route-points--routePoint-"></code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-DELETEapi-route-points--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-route-points--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-route-points--id-"></code></pre>
 </div>
-<div id="execution-error-DELETEapi-route-points--routePoint-" hidden>
+<div id="execution-error-DELETEapi-route-points--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-route-points--routePoint-"></code></pre>
+    <pre><code id="execution-error-message-DELETEapi-route-points--id-"></code></pre>
 </div>
-<form id="form-DELETEapi-route-points--routePoint-" data-method="DELETE" data-path="api/route-points/{routePoint}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-route-points--routePoint-', this);">
+<form id="form-DELETEapi-route-points--id-" data-method="DELETE" data-path="api/route-points/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-route-points--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-route-points--routePoint-" onclick="tryItOut('DELETEapi-route-points--routePoint-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-route-points--routePoint-" onclick="cancelTryOut('DELETEapi-route-points--routePoint-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-route-points--routePoint-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-route-points--id-" onclick="tryItOut('DELETEapi-route-points--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-route-points--id-" onclick="cancelTryOut('DELETEapi-route-points--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-route-points--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
- <b><code>api/route-points/{routePoint}</code></b>
+ <b><code>api/route-points/{id}</code></b>
 </p>
 <p>
-<label id="auth-DELETEapi-route-points--routePoint-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-route-points--routePoint-" data-component="header"></label>
+<label id="auth-DELETEapi-route-points--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-route-points--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>routePoint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="routePoint" data-endpoint="DELETEapi-route-points--routePoint-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="DELETEapi-route-points--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the route.</p>
 </form><h1>Routes</h1>
 <h2>Add a point to route.</h2>
+<p>Route is a data structure that is build base on routes, saving their order.</p>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/routes/add-point" \
+    "http://localhost/api/routes/add-point?routeId=13&amp;routePointId=6&amp;afterRoutePoint=10" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1307,6 +1784,11 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'routeId'=&gt; '13',
+            'routePointId'=&gt; '6',
+            'afterRoutePoint'=&gt; '10',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -1314,6 +1796,14 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/routes/add-point"
 );
+
+let params = {
+    "routeId": "13",
+    "routePointId": "6",
+    "afterRoutePoint": "10",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -1325,6 +1815,58 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "route": {
+        "id": 1,
+        "name": "Route №12",
+        "created_at": "2020-12-06 19:08:02",
+        "updated_at": "2020-12-06 19:08:02"
+    },
+    "points": [
+        {
+            "id": 1,
+            "street_name": "Svyatoslava Rihtera",
+            "street_number": "148",
+            "lat": "46.4560308",
+            "lng": "30.6844385",
+            "pivot": {
+                "route_id": "1",
+                "route_point_id": "1"
+            }
+        },
+        {
+            "id": 3,
+            "street_name": "Borisa Derevyanko",
+            "street_number": "2",
+            "lat": "46.442794",
+            "lng": "30.704637",
+            "pivot": {
+                "route_id": "1",
+                "route_point_id": "3"
+            }
+        },
+        {
+            "id": 2,
+            "street_name": "Gastelo",
+            "street_number": "55",
+            "lat": "46.450927",
+            "lng": "30.684999",
+            "pivot": {
+                "route_id": "1",
+                "route_point_id": "2"
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
 <div id="execution-results-POSTapi-routes-add-point" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-routes-add-point"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-routes-add-point"></code></pre>
@@ -1347,6 +1889,22 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-routes-add-point" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-routes-add-point" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>routeId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="routeId" data-endpoint="POSTapi-routes-add-point" data-component="query" required  hidden>
+<br>
+Id of the route where route point should be added.</p>
+<p>
+<b><code>routePointId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="routePointId" data-endpoint="POSTapi-routes-add-point" data-component="query" required  hidden>
+<br>
+Id of the route point, which should be added to route.</p>
+<p>
+<b><code>afterRoutePoint</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="afterRoutePoint" data-endpoint="POSTapi-routes-add-point" data-component="query"  hidden>
+<br>
+Id of the route point, after which should be added to route. If not set, new route point will be added as last.</p>
 </form>
 <h2>Delete a route point from route.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1354,7 +1912,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/routes/delete-point" \
+    "http://localhost/api/routes/delete-point?routeId=10&amp;routePointId=12" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1368,6 +1926,10 @@ $response = $client-&gt;delete(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'routeId'=&gt; '10',
+            'routePointId'=&gt; '12',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -1375,6 +1937,13 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/routes/delete-point"
 );
+
+let params = {
+    "routeId": "10",
+    "routePointId": "12",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -1386,6 +1955,16 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found"
+}</code></pre>
 <div id="execution-results-DELETEapi-routes-delete-point" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEapi-routes-delete-point"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEapi-routes-delete-point"></code></pre>
@@ -1408,6 +1987,17 @@ fetch(url, {
 <p>
 <label id="auth-DELETEapi-routes-delete-point" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-routes-delete-point" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>routeId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="routeId" data-endpoint="DELETEapi-routes-delete-point" data-component="query" required  hidden>
+<br>
+Id of the route where route point should be deleted from.</p>
+<p>
+<b><code>routePointId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="routePointId" data-endpoint="DELETEapi-routes-delete-point" data-component="query" required  hidden>
+<br>
+Id of the route point, which should be deleted from route.</p>
 </form>
 <h2>Display all routes.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1447,6 +2037,30 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "name": "Route №12",
+            "created_at": "2020-12-06 19:08:02",
+            "updated_at": "2020-12-06 19:08:02"
+        }
+    ],
+    "first_page_url": "http:\/\/homestead.test\/api\/routes?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/homestead.test\/api\/routes?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/homestead.test\/api\/routes",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
 <div id="execution-results-GETapi-routes" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-routes"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-routes"></code></pre>
@@ -1476,14 +2090,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/routes/quis" \
+    -G "http://localhost/api/routes/7" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/routes/quis',
+    'http://localhost/api/routes/7',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1495,7 +2109,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/routes/quis"
+    "http://localhost/api/routes/7"
 );
 
 let headers = {
@@ -1508,6 +2122,58 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "route": {
+        "id": 1,
+        "name": "Route №12",
+        "created_at": "2020-12-06 19:08:02",
+        "updated_at": "2020-12-06 19:08:02"
+    },
+    "points": [
+        {
+            "id": 1,
+            "street_name": "Svyatoslava Rihtera",
+            "street_number": "148",
+            "lat": "46.4560308",
+            "lng": "30.6844385",
+            "pivot": {
+                "route_id": "1",
+                "route_point_id": "1"
+            }
+        },
+        {
+            "id": 3,
+            "street_name": "Borisa Derevyanko",
+            "street_number": "2",
+            "lat": "46.442794",
+            "lng": "30.704637",
+            "pivot": {
+                "route_id": "1",
+                "route_point_id": "3"
+            }
+        },
+        {
+            "id": 2,
+            "street_name": "Gastelo",
+            "street_number": "55",
+            "lat": "46.450927",
+            "lng": "30.684999",
+            "pivot": {
+                "route_id": "1",
+                "route_point_id": "2"
+            }
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
 <div id="execution-results-GETapi-routes--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-routes--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-routes--id-"></code></pre>
@@ -1532,10 +2198,10 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="GETapi-routes--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="GETapi-routes--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the route.</p>
 </form>
 <h2>Update the specified route.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1543,27 +2209,36 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/routes/nam" \
+    "http://localhost/api/routes/9?name=iste" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/routes/nam',
+    'http://localhost/api/routes/9',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'name'=&gt; 'iste',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/routes/nam"
+    "http://localhost/api/routes/9"
 );
+
+let params = {
+    "name": "iste",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -1575,42 +2250,63 @@ fetch(url, {
     method: "PUT",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-PUTapi-routes--route-" hidden>
-    <blockquote>Received response<span id="execution-response-status-PUTapi-routes--route-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-routes--route-"></code></pre>
+<blockquote>
+<p>Example response (200, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 4,
+    "name": "Route №123",
+    "created_at": "2020-12-07 07:52:22",
+    "updated_at": "2020-12-07 08:35:57"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-PUTapi-routes--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-routes--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-routes--id-"></code></pre>
 </div>
-<div id="execution-error-PUTapi-routes--route-" hidden>
+<div id="execution-error-PUTapi-routes--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-routes--route-"></code></pre>
+    <pre><code id="execution-error-message-PUTapi-routes--id-"></code></pre>
 </div>
-<form id="form-PUTapi-routes--route-" data-method="PUT" data-path="api/routes/{route}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-routes--route-', this);">
+<form id="form-PUTapi-routes--id-" data-method="PUT" data-path="api/routes/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-routes--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-routes--route-" onclick="tryItOut('PUTapi-routes--route-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-routes--route-" onclick="cancelTryOut('PUTapi-routes--route-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-routes--route-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-routes--id-" onclick="tryItOut('PUTapi-routes--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-routes--id-" onclick="cancelTryOut('PUTapi-routes--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-routes--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
- <b><code>api/routes/{route}</code></b>
+ <b><code>api/routes/{id}</code></b>
 </p>
 <p>
-<label id="auth-PUTapi-routes--route-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-routes--route-" data-component="header"></label>
+<label id="auth-PUTapi-routes--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-routes--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>route</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="route" data-endpoint="PUTapi-routes--route-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="PUTapi-routes--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the route.</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="name" data-endpoint="PUTapi-routes--id-" data-component="query" required  hidden>
+<br>
+Name of the route.</p>
 </form>
-<h2>Store a newly created resource in storage.</h2>
+<h2>Store a newly created route.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/routes" \
+    "http://localhost/api/routes?name=minima" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1624,6 +2320,9 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'name'=&gt; 'minima',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -1631,6 +2330,12 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/routes"
 );
+
+let params = {
+    "name": "minima",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Basic {YOUR_AUTH_KEY}",
@@ -1642,6 +2347,21 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "name": "Route №15",
+    "updated_at": "2020-12-07 07:33:32",
+    "created_at": "2020-12-07 07:33:32",
+    "id": 2
+}</code></pre>
+<blockquote>
+<p>Example response (400, validation error):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "name": "The name may not be greater than 10 characters."
+}</code></pre>
 <div id="execution-results-POSTapi-routes" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-routes"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-routes"></code></pre>
@@ -1664,6 +2384,12 @@ fetch(url, {
 <p>
 <label id="auth-POSTapi-routes" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="POSTapi-routes" data-component="header"></label>
 </p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="name" data-endpoint="POSTapi-routes" data-component="query" required  hidden>
+<br>
+Name of the route.</p>
 </form>
 <h2>Remove the specified route.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1671,14 +2397,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/routes/iste" \
+    "http://localhost/api/routes/4" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/routes/iste',
+    'http://localhost/api/routes/4',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1690,7 +2416,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/routes/iste"
+    "http://localhost/api/routes/4"
 );
 
 let headers = {
@@ -1703,34 +2429,44 @@ fetch(url, {
     method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-DELETEapi-routes--route-" hidden>
-    <blockquote>Received response<span id="execution-response-status-DELETEapi-routes--route-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-routes--route-"></code></pre>
+<blockquote>
+<p>Example response (204, success):</p>
+</blockquote>
+<pre><code class="language-json">&lt;Empty response&gt;</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Not found."
+}</code></pre>
+<div id="execution-results-DELETEapi-routes--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-routes--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-routes--id-"></code></pre>
 </div>
-<div id="execution-error-DELETEapi-routes--route-" hidden>
+<div id="execution-error-DELETEapi-routes--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-routes--route-"></code></pre>
+    <pre><code id="execution-error-message-DELETEapi-routes--id-"></code></pre>
 </div>
-<form id="form-DELETEapi-routes--route-" data-method="DELETE" data-path="api/routes/{route}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-routes--route-', this);">
+<form id="form-DELETEapi-routes--id-" data-method="DELETE" data-path="api/routes/{id}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-routes--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-routes--route-" onclick="tryItOut('DELETEapi-routes--route-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-routes--route-" onclick="cancelTryOut('DELETEapi-routes--route-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-routes--route-" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-routes--id-" onclick="tryItOut('DELETEapi-routes--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-routes--id-" onclick="cancelTryOut('DELETEapi-routes--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-routes--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
- <b><code>api/routes/{route}</code></b>
+ <b><code>api/routes/{id}</code></b>
 </p>
 <p>
-<label id="auth-DELETEapi-routes--route-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-routes--route-" data-component="header"></label>
+<label id="auth-DELETEapi-routes--id-" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="DELETEapi-routes--id-" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>route</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="route" data-endpoint="DELETEapi-routes--route-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="DELETEapi-routes--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the route.</p>
 </form>
     </div>
     <div class="dark-box">

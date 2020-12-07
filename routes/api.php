@@ -26,24 +26,24 @@ Route::group(['middleware' => 'role:admin'], function() {
     //Read a single route
     Route::get('/routes/{id}', 'RouteController@show');
     //Edit a single route
-    Route::put('/routes/{route}', 'RouteController@update');
+    Route::put('/routes/{id}', 'RouteController@update');
     //Add a new route
     Route::post('/routes', 'RouteController@store');
     //Delete route
-    Route::delete('/routes/{route}', 'RouteController@destroy');
+    Route::delete('/routes/{id}', 'RouteController@destroy');
 
 
 
     //Browse all route points
     Route::get('/route-points', 'RoutePointController@index');
     //Read single route point
-    Route::get('/route-points/{routePoint}', 'RoutePointController@show');
+    Route::get('/route-points/{id}', 'RoutePointController@show');
     //Add route point
     Route::post('/route-points', 'RoutePointController@store');
     //Edit route point
-    Route::put('/route-points/{routePoint}', 'RoutePointController@update');
+    Route::put('/route-points/{id}', 'RoutePointController@update');
     //Delete route points
-    Route::delete('/route-points/{routePoint}', 'RoutePointController@destroy');
+    Route::delete('/route-points/{id}', 'RoutePointController@destroy');
 
 
     //Browse all bus drivers
@@ -69,13 +69,13 @@ Route::group(['middleware' => 'role:admin'], function() {
     //Browse all buses
     Route::get('/buses', 'BusController@index');
     //Read a single bus information
-    Route::get('/buses/{bus}', 'BusController@show');
+    Route::get('/buses/{id}', 'BusController@show');
     //Edit a single bus information
-    Route::put('/buses/{bus}', 'BusController@update');
+    Route::put('/buses/{id}', 'BusController@update');
     //Add a new bus
     Route::post('/buses', 'BusController@store');
     //Delete bus
-    Route::delete('/buses/{bus}', 'BusController@destroy');
+    Route::delete('/buses/{id}', 'BusController@destroy');
 
 });
 

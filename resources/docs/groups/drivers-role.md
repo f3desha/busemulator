@@ -53,6 +53,23 @@ fetch(url, {
 ```
 
 
+> Example response (200, success):
+
+```json
+[
+    {
+        "id": 2,
+        "name": "Driver"
+    }
+]
+```
+> Example response (404, not found):
+
+```json
+[
+    "Role not found"
+]
+```
 <div id="execution-results-GETapi-bus-drivers" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-bus-drivers"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-bus-drivers"></code></pre>
@@ -88,7 +105,7 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/bus-drivers/officiis" \
+    -G "http://localhost/api/bus-drivers/8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -98,7 +115,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/bus-drivers/officiis',
+    'http://localhost/api/bus-drivers/8',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -113,7 +130,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/bus-drivers/officiis"
+    "http://localhost/api/bus-drivers/8"
 );
 
 let headers = {
@@ -130,6 +147,28 @@ fetch(url, {
 ```
 
 
+> Example response (200, success):
+
+```json
+{
+    "id": 2,
+    "name": "Driver"
+}
+```
+> Example response (404, not found):
+
+```json
+[
+    "User not found"
+]
+```
+> Example response (404, not found):
+
+```json
+[
+    "Role not found"
+]
+```
 <div id="execution-results-GETapi-bus-drivers--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-bus-drivers--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-bus-drivers--id-"></code></pre>
@@ -154,10 +193,10 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="GETapi-bus-drivers--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="GETapi-bus-drivers--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the user with Driver role.</p>
 </form>
 
 
@@ -171,7 +210,7 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/bus-drivers/voluptatibus" \
+    "http://localhost/api/bus-drivers/9" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -181,7 +220,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/bus-drivers/voluptatibus',
+    'http://localhost/api/bus-drivers/9',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -196,7 +235,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/bus-drivers/voluptatibus"
+    "http://localhost/api/bus-drivers/9"
 );
 
 let headers = {
@@ -213,6 +252,21 @@ fetch(url, {
 ```
 
 
+> Example response (200, success):
+
+```json
+{
+    "id": 3,
+    "name": "Regular"
+}
+```
+> Example response (404, not found):
+
+```json
+[
+    "Role not found"
+]
+```
 <div id="execution-results-PUTapi-bus-drivers--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-PUTapi-bus-drivers--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-PUTapi-bus-drivers--id-"></code></pre>
@@ -237,10 +291,10 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="PUTapi-bus-drivers--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="PUTapi-bus-drivers--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the user with Driver role.</p>
 </form>
 
 
@@ -254,7 +308,7 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/bus-drivers/dignissimos" \
+    "http://localhost/api/bus-drivers/5" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -264,7 +318,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/bus-drivers/dignissimos',
+    'http://localhost/api/bus-drivers/5',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -279,7 +333,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/bus-drivers/dignissimos"
+    "http://localhost/api/bus-drivers/5"
 );
 
 let headers = {
@@ -296,6 +350,18 @@ fetch(url, {
 ```
 
 
+> Example response (204, success):
+
+```json
+<Empty response>
+```
+> Example response (404, not found):
+
+```json
+{
+    "msg": "Not found."
+}
+```
 <div id="execution-results-DELETEapi-bus-drivers--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEapi-bus-drivers--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEapi-bus-drivers--id-"></code></pre>
@@ -320,10 +386,10 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="id" data-endpoint="DELETEapi-bus-drivers--id-" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="DELETEapi-bus-drivers--id-" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the user with Driver role.</p>
 </form>
 
 

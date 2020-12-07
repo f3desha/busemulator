@@ -28,8 +28,10 @@ class Route extends Model
                     $afterRoutePoint = $last->id;
                 }
                 $this->addPointAfter($afterRoutePoint, $point);
+                return true;
             }
         }
+        return false;
     }
 
     public function removePoint(int $route_point_id){

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "070ef714-08a9-4d19-85b8-57b8dc4aaba8",
+        "_postman_id": "a50f2cec-2066-4016-9e47-f6c8f4e0cf49",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -26,8 +26,21 @@
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/buses\/assign-driver",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-driver"
+                            "query": [
+                                {
+                                    "key": "driverId",
+                                    "value": "2",
+                                    "description": "Id of Driver user",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "busId",
+                                    "value": "15",
+                                    "description": "Id of bus to assign the driver",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-driver?driverId=2&busId=15"
                         },
                         "method": "POST",
                         "header": [
@@ -52,8 +65,15 @@
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/buses\/delete-driver",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/delete-driver"
+                            "query": [
+                                {
+                                    "key": "busId",
+                                    "value": "19",
+                                    "description": "Id of bus to remove the driver from",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/delete-driver?busId=19"
                         },
                         "method": "DELETE",
                         "header": [
@@ -78,8 +98,21 @@
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/buses\/assign-route",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-route"
+                            "query": [
+                                {
+                                    "key": "routeId",
+                                    "value": "18",
+                                    "description": "Id of Route to assign to bus",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "busId",
+                                    "value": "8",
+                                    "description": "Id of bus to assign the driver",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-route?routeId=18&busId=8"
                         },
                         "method": "POST",
                         "header": [
@@ -155,13 +188,13 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/buses\/:bus",
+                            "path": "api\/buses\/:id",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:bus",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:id",
                             "variable": [
                                 {
-                                    "id": "bus",
-                                    "key": "bus",
+                                    "id": "id",
+                                    "key": "id",
                                     "value": "11",
                                     "description": "The ID of the Bus."
                                 }
@@ -189,15 +222,22 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/buses\/:bus",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:bus",
+                            "path": "api\/buses\/:id",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "voluptatem",
+                                    "description": "Name of the Bus.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:id?name=voluptatem",
                             "variable": [
                                 {
-                                    "id": "bus",
-                                    "key": "bus",
-                                    "value": "dolorem",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the Bus."
                                 }
                             ]
                         },
@@ -224,8 +264,15 @@
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/buses",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses"
+                            "query": [
+                                {
+                                    "key": "model",
+                                    "value": "eius",
+                                    "description": "Make of the bus.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses?model=eius"
                         },
                         "method": "POST",
                         "header": [
@@ -249,15 +296,15 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/buses\/:bus",
+                            "path": "api\/buses\/:id",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:bus",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:id",
                             "variable": [
                                 {
-                                    "id": "bus",
-                                    "key": "bus",
-                                    "value": "sint",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "15",
+                                    "description": "The ID of the bus."
                                 }
                             ]
                         },
@@ -290,7 +337,7 @@
                                 {
                                     "id": "bus",
                                     "key": "bus",
-                                    "value": "quas",
+                                    "value": "sit",
                                     "description": ""
                                 }
                             ]
@@ -356,8 +403,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "officiis",
-                                    "description": ""
+                                    "value": "8",
+                                    "description": "The ID of the user with Driver role."
                                 }
                             ]
                         },
@@ -390,8 +437,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptatibus",
-                                    "description": ""
+                                    "value": "9",
+                                    "description": "The ID of the user with Driver role."
                                 }
                             ]
                         },
@@ -424,8 +471,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dignissimos",
-                                    "description": ""
+                                    "value": "5",
+                                    "description": "The ID of the user with Driver role."
                                 }
                             ]
                         },
@@ -473,7 +520,7 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Route Points is the points, from which Route is build."
                     },
                     "response": []
                 },
@@ -483,15 +530,15 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/route-points\/:routePoint",
+                            "path": "api\/route-points\/:id",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:routePoint",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:id",
                             "variable": [
                                 {
-                                    "id": "routePoint",
-                                    "key": "routePoint",
-                                    "value": "voluptates",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "19",
+                                    "description": "The ID of the route point."
                                 }
                             ]
                         },
@@ -518,8 +565,33 @@
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/route-points",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points"
+                            "query": [
+                                {
+                                    "key": "street_name",
+                                    "value": "iure",
+                                    "description": "Name of the route point Street.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "street_number",
+                                    "value": "id",
+                                    "description": "Number of the route point Street.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "lat",
+                                    "value": "sed",
+                                    "description": "Latitude of the route point in format 1.111111",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "lng",
+                                    "value": "similique",
+                                    "description": "Longitude of the route pointin format 1.111111",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points?street_name=iure&street_number=id&lat=sed&lng=similique"
                         },
                         "method": "POST",
                         "header": [
@@ -543,15 +615,40 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/route-points\/:routePoint",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:routePoint",
+                            "path": "api\/route-points\/:id",
+                            "query": [
+                                {
+                                    "key": "street_name",
+                                    "value": "aliquid",
+                                    "description": "Name of the route point Street.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "street_number",
+                                    "value": "nam",
+                                    "description": "Number of the route point Street.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "lat",
+                                    "value": "est",
+                                    "description": "Latitude of the route point in format 1.111111",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "lng",
+                                    "value": "rem",
+                                    "description": "Longitude of the route pointin format 1.111111",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:id?street_name=aliquid&street_number=nam&lat=est&lng=rem",
                             "variable": [
                                 {
-                                    "id": "routePoint",
-                                    "key": "routePoint",
-                                    "value": "tenetur",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the route point."
                                 }
                             ]
                         },
@@ -577,15 +674,15 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/route-points\/:routePoint",
+                            "path": "api\/route-points\/:id",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:routePoint",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:id",
                             "variable": [
                                 {
-                                    "id": "routePoint",
-                                    "key": "routePoint",
-                                    "value": "dolores",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "12",
+                                    "description": "The ID of the route."
                                 }
                             ]
                         },
@@ -612,14 +709,33 @@
             "description": "",
             "item": [
                 {
-                    "name": "Add a point to route.",
+                    "name": "Add a point to route.\n\nRoute is a data structure that is build base on routes, saving their order.",
                     "request": {
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/routes\/add-point",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/add-point"
+                            "query": [
+                                {
+                                    "key": "routeId",
+                                    "value": "13",
+                                    "description": "Id of the route where route point should be added.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "routePointId",
+                                    "value": "6",
+                                    "description": "Id of the route point, which should be added to route.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "afterRoutePoint",
+                                    "value": "10",
+                                    "description": "Id of the route point, after which should be added to route. If not set, new route point will be added as last.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/add-point?routeId=13&routePointId=6&afterRoutePoint=10"
                         },
                         "method": "POST",
                         "header": [
@@ -644,8 +760,21 @@
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/routes\/delete-point",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/delete-point"
+                            "query": [
+                                {
+                                    "key": "routeId",
+                                    "value": "10",
+                                    "description": "Id of the route where route point should be deleted from.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "routePointId",
+                                    "value": "12",
+                                    "description": "Id of the route point, which should be deleted from route.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/delete-point?routeId=10&routePointId=12"
                         },
                         "method": "DELETE",
                         "header": [
@@ -702,8 +831,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quis",
-                                    "description": ""
+                                    "value": "7",
+                                    "description": "The ID of the route."
                                 }
                             ]
                         },
@@ -729,15 +858,22 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/routes\/:route",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/:route",
+                            "path": "api\/routes\/:id",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "iste",
+                                    "description": "Name of the route.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/:id?name=iste",
                             "variable": [
                                 {
-                                    "id": "route",
-                                    "key": "route",
-                                    "value": "nam",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "9",
+                                    "description": "The ID of the route."
                                 }
                             ]
                         },
@@ -758,14 +894,21 @@
                     "response": []
                 },
                 {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "Store a newly created route.",
                     "request": {
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
                             "path": "api\/routes",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes"
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "minima",
+                                    "description": "Name of the route.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes?name=minima"
                         },
                         "method": "POST",
                         "header": [
@@ -789,15 +932,15 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/routes\/:route",
+                            "path": "api\/routes\/:id",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/:route",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/:id",
                             "variable": [
                                 {
-                                    "id": "route",
-                                    "key": "route",
-                                    "value": "iste",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "4",
+                                    "description": "The ID of the route."
                                 }
                             ]
                         },
