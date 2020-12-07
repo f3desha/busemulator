@@ -13,7 +13,7 @@ Route is a data structure that is build base on routes, saving their order.
 
 ```bash
 curl -X POST \
-    "http://localhost/api/routes/add-point?routeId=9&routePointId=8&afterRoutePoint=16" \
+    "http://localhost/api/routes/add-point?routeId=9&routePointId=11&afterRoutePoint=5" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -32,8 +32,8 @@ $response = $client->post(
         ],
         'query' => [
             'routeId'=> '9',
-            'routePointId'=> '8',
-            'afterRoutePoint'=> '16',
+            'routePointId'=> '11',
+            'afterRoutePoint'=> '5',
         ],
     ]
 );
@@ -48,8 +48,8 @@ const url = new URL(
 
 let params = {
     "routeId": "9",
-    "routePointId": "8",
-    "afterRoutePoint": "16",
+    "routePointId": "11",
+    "afterRoutePoint": "5",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -173,7 +173,7 @@ Id of the route point, after which should be added to route. If not set, new rou
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/routes/delete-point?routeId=15&routePointId=19" \
+    "http://localhost/api/routes/delete-point?routeId=2&routePointId=19" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -191,7 +191,7 @@ $response = $client->delete(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'routeId'=> '15',
+            'routeId'=> '2',
             'routePointId'=> '19',
         ],
     ]
@@ -206,7 +206,7 @@ const url = new URL(
 );
 
 let params = {
-    "routeId": "15",
+    "routeId": "2",
     "routePointId": "19",
 };
 Object.keys(params)
@@ -386,7 +386,7 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/routes/3" \
+    -G "http://localhost/api/routes/14" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -396,7 +396,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/routes/3',
+    'http://localhost/api/routes/14',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -411,7 +411,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/routes/3"
+    "http://localhost/api/routes/14"
 );
 
 let headers = {
@@ -523,7 +523,7 @@ The ID of the route.</p>
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/routes/5?name=et" \
+    "http://localhost/api/routes/15?name=vitae" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -533,7 +533,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/routes/5',
+    'http://localhost/api/routes/15',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -541,7 +541,7 @@ $response = $client->put(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'name'=> 'et',
+            'name'=> 'vitae',
         ],
     ]
 );
@@ -551,11 +551,11 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/routes/5"
+    "http://localhost/api/routes/15"
 );
 
 let params = {
-    "name": "et",
+    "name": "vitae",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -638,7 +638,7 @@ Name of the route.</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/routes?name=et" \
+    "http://localhost/api/routes?name=porro" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -656,7 +656,7 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'name'=> 'et',
+            'name'=> 'porro',
         ],
     ]
 );
@@ -670,7 +670,7 @@ const url = new URL(
 );
 
 let params = {
-    "name": "et",
+    "name": "porro",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -747,7 +747,7 @@ Name of the route.</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/routes/15" \
+    "http://localhost/api/routes/17" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -757,7 +757,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/routes/15',
+    'http://localhost/api/routes/17',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -772,7 +772,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/routes/15"
+    "http://localhost/api/routes/17"
 );
 
 let headers = {

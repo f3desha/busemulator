@@ -391,7 +391,7 @@ class BusController extends Controller
         }
      * @response status=404 scenario="not found"
         {
-        "msg": "Rout not found"
+        "msg": "Route not found"
         }
      * @response status=404 scenario="not found"
         {
