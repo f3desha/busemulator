@@ -128,7 +128,7 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/route-points/8" \
+    -G "http://localhost/api/route-points/6" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -138,7 +138,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/route-points/8',
+    'http://localhost/api/route-points/6',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -153,7 +153,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/route-points/8"
+    "http://localhost/api/route-points/6"
 );
 
 let headers = {
@@ -229,7 +229,7 @@ The ID of the route point.</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/route-points?street_name=sit&street_number=magnam&lat=eveniet&lng=qui" \
+    "http://localhost/api/route-points?street_name=necessitatibus&street_number=possimus&lat=distinctio&lng=sapiente" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -247,10 +247,10 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'street_name'=> 'sit',
-            'street_number'=> 'magnam',
-            'lat'=> 'eveniet',
-            'lng'=> 'qui',
+            'street_name'=> 'necessitatibus',
+            'street_number'=> 'possimus',
+            'lat'=> 'distinctio',
+            'lng'=> 'sapiente',
         ],
     ]
 );
@@ -264,10 +264,10 @@ const url = new URL(
 );
 
 let params = {
-    "street_name": "sit",
-    "street_number": "magnam",
-    "lat": "eveniet",
-    "lng": "qui",
+    "street_name": "necessitatibus",
+    "street_number": "possimus",
+    "lat": "distinctio",
+    "lng": "sapiente",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -362,7 +362,7 @@ Longitude of the route pointin format 1.111111</p>
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/route-points/3?street_name=aliquid&street_number=maxime&lat=praesentium&lng=aliquid" \
+    "http://localhost/api/route-points/3?street_name=similique&street_number=animi&lat=occaecati&lng=doloremque" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -380,10 +380,10 @@ $response = $client->put(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'street_name'=> 'aliquid',
-            'street_number'=> 'maxime',
-            'lat'=> 'praesentium',
-            'lng'=> 'aliquid',
+            'street_name'=> 'similique',
+            'street_number'=> 'animi',
+            'lat'=> 'occaecati',
+            'lng'=> 'doloremque',
         ],
     ]
 );
@@ -397,10 +397,10 @@ const url = new URL(
 );
 
 let params = {
-    "street_name": "aliquid",
-    "street_number": "maxime",
-    "lat": "praesentium",
-    "lng": "aliquid",
+    "street_name": "similique",
+    "street_number": "animi",
+    "lat": "occaecati",
+    "lng": "doloremque",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -499,7 +499,7 @@ Longitude of the route pointin format 1.111111</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/route-points/7" \
+    "http://localhost/api/route-points/8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -509,7 +509,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/route-points/7',
+    'http://localhost/api/route-points/8',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -524,7 +524,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/route-points/7"
+    "http://localhost/api/route-points/8"
 );
 
 let headers = {

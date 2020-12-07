@@ -11,7 +11,7 @@
 
 ```bash
 curl -X POST \
-    "http://localhost/api/buses/assign-driver?driverId=17&busId=20" \
+    "http://localhost/api/buses/assign-driver?driverId=7&busId=12" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -29,8 +29,8 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'driverId'=> '17',
-            'busId'=> '20',
+            'driverId'=> '7',
+            'busId'=> '12',
         ],
     ]
 );
@@ -44,8 +44,8 @@ const url = new URL(
 );
 
 let params = {
-    "driverId": "17",
-    "busId": "20",
+    "driverId": "7",
+    "busId": "12",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -146,7 +146,7 @@ Id of bus to assign the driver</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/buses/delete-driver?busId=13" \
+    "http://localhost/api/buses/delete-driver?busId=8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -164,7 +164,7 @@ $response = $client->delete(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'busId'=> '13',
+            'busId'=> '8',
         ],
     ]
 );
@@ -178,7 +178,7 @@ const url = new URL(
 );
 
 let params = {
-    "busId": "13",
+    "busId": "8",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -257,7 +257,7 @@ Id of bus to remove the driver from</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/buses/assign-route?routeId=1&busId=11" \
+    "http://localhost/api/buses/assign-route?routeId=10&busId=2" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -275,8 +275,8 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'routeId'=> '1',
-            'busId'=> '11',
+            'routeId'=> '10',
+            'busId'=> '2',
         ],
     ]
 );
@@ -290,8 +290,8 @@ const url = new URL(
 );
 
 let params = {
-    "routeId": "1",
-    "busId": "11",
+    "routeId": "10",
+    "busId": "2",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -581,7 +581,7 @@ This endpoint allows you to look the details of a bus.
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/buses/7" \
+    -G "http://localhost/api/buses/15" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -591,7 +591,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/buses/7',
+    'http://localhost/api/buses/15',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -606,7 +606,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/7"
+    "http://localhost/api/buses/15"
 );
 
 let headers = {
@@ -681,7 +681,7 @@ The ID of the Bus.</p>
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/buses/5?name=laboriosam" \
+    "http://localhost/api/buses/18?name=consectetur" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -691,7 +691,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/buses/5',
+    'http://localhost/api/buses/18',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -699,7 +699,7 @@ $response = $client->put(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'name'=> 'laboriosam',
+            'name'=> 'consectetur',
         ],
     ]
 );
@@ -709,11 +709,11 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/5"
+    "http://localhost/api/buses/18"
 );
 
 let params = {
-    "name": "laboriosam",
+    "name": "consectetur",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -791,7 +791,7 @@ Name of the Bus.</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/buses?model=numquam" \
+    "http://localhost/api/buses?model=ad" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -809,7 +809,7 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'model'=> 'numquam',
+            'model'=> 'ad',
         ],
     ]
 );
@@ -823,7 +823,7 @@ const url = new URL(
 );
 
 let params = {
-    "model": "numquam",
+    "model": "ad",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -898,7 +898,7 @@ Make of the bus.</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/buses/17" \
+    "http://localhost/api/buses/18" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -908,7 +908,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/buses/17',
+    'http://localhost/api/buses/18',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -923,7 +923,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/17"
+    "http://localhost/api/buses/18"
 );
 
 let headers = {
@@ -993,7 +993,7 @@ Few things to drive a bus: register user, promote it to Driver, create Route and
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/buses/14/drive" \
+    "http://localhost/api/buses/15/drive" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -1003,7 +1003,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/buses/14/drive',
+    'http://localhost/api/buses/15/drive',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -1018,7 +1018,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/14/drive"
+    "http://localhost/api/buses/15/drive"
 );
 
 let headers = {
@@ -1053,6 +1053,13 @@ fetch(url, {
 ```json
 {
     "msg": "Bus not found"
+}
+```
+> Example response (404, not found):
+
+```json
+{
+    "msg": "Rout not found"
 }
 ```
 > Example response (404, not found):

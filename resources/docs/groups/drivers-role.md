@@ -105,7 +105,7 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/bus-drivers/6" \
+    -G "http://localhost/api/bus-drivers/9" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -115,7 +115,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/bus-drivers/6',
+    'http://localhost/api/bus-drivers/9',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -130,7 +130,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/bus-drivers/6"
+    "http://localhost/api/bus-drivers/9"
 );
 
 let headers = {
@@ -210,7 +210,7 @@ The ID of the user with Driver role.</p>
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/bus-drivers/11" \
+    "http://localhost/api/bus-drivers/8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -220,7 +220,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/bus-drivers/11',
+    'http://localhost/api/bus-drivers/8',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -235,7 +235,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/bus-drivers/11"
+    "http://localhost/api/bus-drivers/8"
 );
 
 let headers = {
@@ -308,7 +308,7 @@ The ID of the user with Driver role.</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/bus-drivers/13" \
+    "http://localhost/api/bus-drivers/9" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -318,7 +318,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/bus-drivers/13',
+    'http://localhost/api/bus-drivers/9',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -333,7 +333,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/bus-drivers/13"
+    "http://localhost/api/bus-drivers/9"
 );
 
 let headers = {
