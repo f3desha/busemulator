@@ -32,5 +32,5 @@ Bus Emulator API is a product according to next tech spec:
 - Copy .env.example file and change it to .env
 - Paste in .env file 
 DB_CONNECTION=sqlite
-DB_DATABASE=/home/vagrant/first/database/busemulator.sqlite
+DB_DATABASE=*LARAVEL_ROOT*/database/busemulator.sqlite
 - Run 'php artisan migrate:refresh --seed'
