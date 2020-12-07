@@ -26,12 +26,12 @@ paths:
                     in: query
                     name: busId
                     description: 'Id of bus to assign the driver'
-                    example: 8
+                    example: 20
                     required: true
                     schema:
                         type: integer
                         description: 'Id of bus to assign the driver'
-                        example: 8
+                        example: 20
                 -
                     in: header
                     name: Authorization
@@ -87,12 +87,12 @@ paths:
                     in: query
                     name: busId
                     description: 'Id of bus to remove the driver from'
-                    example: 9
+                    example: 13
                     required: true
                     schema:
                         type: integer
                         description: 'Id of bus to remove the driver from'
-                        example: 9
+                        example: 13
                 -
                     in: header
                     name: Authorization
@@ -138,22 +138,22 @@ paths:
                     in: query
                     name: routeId
                     description: 'Id of Route to assign to bus'
-                    example: 17
+                    example: 1
                     required: true
                     schema:
                         type: integer
                         description: 'Id of Route to assign to bus'
-                        example: 17
+                        example: 1
                 -
                     in: query
                     name: busId
                     description: 'Id of bus to assign the driver'
-                    example: 6
+                    example: 11
                     required: true
                     schema:
                         type: integer
                         description: 'Id of bus to assign the driver'
-                        example: 6
+                        example: 11
                 -
                     in: header
                     name: Authorization
@@ -310,12 +310,12 @@ paths:
                     in: query
                     name: model
                     description: 'Make of the bus.'
-                    example: ut
+                    example: numquam
                     required: true
                     schema:
                         type: string
                         description: 'Make of the bus.'
-                        example: ut
+                        example: numquam
                 -
                     in: header
                     name: Authorization
@@ -425,12 +425,12 @@ paths:
                     in: query
                     name: name
                     description: 'Name of the Bus.'
-                    example: aut
+                    example: laboriosam
                     required: true
                     schema:
                         type: string
                         description: 'Name of the Bus.'
-                        example: aut
+                        example: laboriosam
                 -
                     in: header
                     name: Authorization
@@ -517,14 +517,14 @@ paths:
                 in: path
                 name: id
                 description: 'The ID of the Bus.'
-                example: 12
+                example: 7
                 required: true
                 schema:
                     type: integer
     '/api/buses/{id}/drive':
-        get:
+        put:
             summary: 'Drive a bus.'
-            description: ''
+            description: 'Few things to drive a bus: register user, promote it to Driver, create Route and assign it to Bus and that''s it - Driver can drive a Bus!'
             parameters:
                 -
                     in: header
@@ -548,16 +548,28 @@ paths:
                     schema:
                         type: string
             responses:
-                201:
-                    description: '201, success'
+                200:
+                    description: '200, success'
                     content:
                         application/json:
                             schema:
-                                type: array
-                                items:
-                                    type: string
+                                type: object
                                 example:
-                                    - 'You are a driver and riding this bus: Volvo'
+                                    current_route_point_name: Koroleva
+                                    current_route_point_number: '23'
+                                    passengers_out: 113
+                                    passengers_in: 63
+                                    passengers_in_the_bus: 64
+                                    max_passengers_in_the_bus: 300
+                                    description: 'You arrived to the route point Koroleva 23. Passengers left: 113. Passengers entered: 63. Passengers riding in the bus: 64'
+                                properties:
+                                    current_route_point_name: { type: string, example: Koroleva }
+                                    current_route_point_number: { type: string, example: '23' }
+                                    passengers_out: { type: integer, example: 113 }
+                                    passengers_in: { type: integer, example: 63 }
+                                    passengers_in_the_bus: { type: integer, example: 64 }
+                                    max_passengers_in_the_bus: { type: integer, example: 300 }
+                                    description: { type: string, example: 'You arrived to the route point Koroleva 23. Passengers left: 113. Passengers entered: 63. Passengers riding in the bus: 64' }
                 404:
                     description: '404, not found'
                     content:
@@ -575,7 +587,7 @@ paths:
                 in: path
                 name: id
                 description: 'The ID of the Bus.'
-                example: 7
+                example: 14
                 required: true
                 schema:
                     type: integer
@@ -774,7 +786,7 @@ paths:
                 in: path
                 name: id
                 description: 'The ID of the user with Driver role.'
-                example: 14
+                example: 6
                 required: true
                 schema:
                     type: integer
@@ -847,42 +859,42 @@ paths:
                     in: query
                     name: street_name
                     description: 'Name of the route point Street.'
-                    example: rerum
+                    example: sit
                     required: true
                     schema:
                         type: string
                         description: 'Name of the route point Street.'
-                        example: rerum
+                        example: sit
                 -
                     in: query
                     name: street_number
                     description: 'Number of the route point Street.'
-                    example: illo
+                    example: magnam
                     required: true
                     schema:
                         type: string
                         description: 'Number of the route point Street.'
-                        example: illo
+                        example: magnam
                 -
                     in: query
                     name: lat
                     description: 'Latitude of the route point in format 1.111111'
-                    example: beatae
+                    example: eveniet
                     required: true
                     schema:
                         type: string
                         description: 'Latitude of the route point in format 1.111111'
-                        example: beatae
+                        example: eveniet
                 -
                     in: query
                     name: lng
                     description: 'Longitude of the route pointin format 1.111111'
-                    example: doloribus
+                    example: qui
                     required: true
                     schema:
                         type: string
                         description: 'Longitude of the route pointin format 1.111111'
-                        example: doloribus
+                        example: qui
                 -
                     in: header
                     name: Authorization
@@ -1000,42 +1012,42 @@ paths:
                     in: query
                     name: street_name
                     description: 'Name of the route point Street.'
-                    example: et
+                    example: aliquid
                     required: true
                     schema:
                         type: string
                         description: 'Name of the route point Street.'
-                        example: et
+                        example: aliquid
                 -
                     in: query
                     name: street_number
                     description: 'Number of the route point Street.'
-                    example: molestiae
+                    example: maxime
                     required: true
                     schema:
                         type: string
                         description: 'Number of the route point Street.'
-                        example: molestiae
+                        example: maxime
                 -
                     in: query
                     name: lat
                     description: 'Latitude of the route point in format 1.111111'
-                    example: ratione
+                    example: praesentium
                     required: true
                     schema:
                         type: string
                         description: 'Latitude of the route point in format 1.111111'
-                        example: ratione
+                        example: praesentium
                 -
                     in: query
                     name: lng
                     description: 'Longitude of the route pointin format 1.111111'
-                    example: nemo
+                    example: aliquid
                     required: true
                     schema:
                         type: string
                         description: 'Longitude of the route pointin format 1.111111'
-                        example: nemo
+                        example: aliquid
                 -
                     in: header
                     name: Authorization
@@ -1133,7 +1145,7 @@ paths:
                 in: path
                 name: id
                 description: 'The ID of the route point.'
-                example: 20
+                example: 8
                 required: true
                 schema:
                     type: integer
@@ -1146,32 +1158,32 @@ paths:
                     in: query
                     name: routeId
                     description: 'Id of the route where route point should be added.'
-                    example: 12
+                    example: 3
                     required: true
                     schema:
                         type: integer
                         description: 'Id of the route where route point should be added.'
-                        example: 12
+                        example: 3
                 -
                     in: query
                     name: routePointId
                     description: 'Id of the route point, which should be added to route.'
-                    example: 10
+                    example: 3
                     required: true
                     schema:
                         type: integer
                         description: 'Id of the route point, which should be added to route.'
-                        example: 10
+                        example: 3
                 -
                     in: query
                     name: afterRoutePoint
                     description: 'Id of the route point, after which should be added to route. If not set, new route point will be added as last.'
-                    example: 9
+                    example: 7
                     required: false
                     schema:
                         type: integer
                         description: 'Id of the route point, after which should be added to route. If not set, new route point will be added as last.'
-                        example: 9
+                        example: 7
                 -
                     in: header
                     name: Authorization
@@ -1227,22 +1239,22 @@ paths:
                     in: query
                     name: routeId
                     description: 'Id of the route where route point should be deleted from.'
-                    example: 15
+                    example: 14
                     required: true
                     schema:
                         type: integer
                         description: 'Id of the route where route point should be deleted from.'
-                        example: 15
+                        example: 14
                 -
                     in: query
                     name: routePointId
                     description: 'Id of the route point, which should be deleted from route.'
-                    example: 6
+                    example: 1
                     required: true
                     schema:
                         type: integer
                         description: 'Id of the route point, which should be deleted from route.'
-                        example: 6
+                        example: 1
                 -
                     in: header
                     name: Authorization
@@ -1348,12 +1360,12 @@ paths:
                     in: query
                     name: name
                     description: 'Name of the route.'
-                    example: incidunt
+                    example: magni
                     required: true
                     schema:
                         type: string
                         description: 'Name of the route.'
-                        example: incidunt
+                        example: magni
                 -
                     in: header
                     name: Authorization
@@ -1463,12 +1475,12 @@ paths:
                     in: query
                     name: name
                     description: 'Name of the route.'
-                    example: qui
+                    example: voluptate
                     required: true
                     schema:
                         type: string
                         description: 'Name of the route.'
-                        example: qui
+                        example: voluptate
                 -
                     in: header
                     name: Authorization
@@ -1564,7 +1576,7 @@ paths:
                 in: path
                 name: id
                 description: 'The ID of the route.'
-                example: 20
+                example: 11
                 required: true
                 schema:
                     type: integer

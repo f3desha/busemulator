@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Bus;
 use App\Helpers\JsonHelper;
+use App\RoutePoint;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Bus as BusResource;
+use Illuminate\Support\Facades\DB;
 use Validator;
+use App\Route as BusRoute;
 
 class BusController extends Controller
 {
@@ -358,6 +361,7 @@ class BusController extends Controller
             if(!is_null($bus->route_id)){
                 $bus->route_id = null;
                 $bus->update();
+                DB::table('driving_processes')->where(['bus_id'=>$bus->id])->delete();
                 return JsonHelper::noContent();
             }
             return JsonHelper::notFound('Bus has no route assigned');
@@ -367,11 +371,20 @@ class BusController extends Controller
 
     /**
      * Drive a bus.
+     *
+     * Few things to drive a bus: register user, promote it to Driver, create Route and assign it to Bus and that's it - Driver can drive a Bus!
+     *
      * @authenticated
-     * @response status=201 scenario=success
-        [
-        "You are a driver and riding this bus: Volvo"
-        ]
+     * @response status=200 scenario=success
+        {
+        "current_route_point_name": "Koroleva",
+        "current_route_point_number": "23",
+        "passengers_out": 113,
+        "passengers_in": 63,
+        "passengers_in_the_bus": 64,
+        "max_passengers_in_the_bus": 300,
+        "description": "You arrived to the route point Koroleva 23. Passengers left: 113. Passengers entered: 63. Passengers riding in the bus: 64"
+        }
      * @response status=404 scenario="not found"
         {
         "msg": "Bus not found"
@@ -407,7 +420,76 @@ class BusController extends Controller
                 if($user){
                     if($user->hasRole('driver')){
                         if($user->id === (int)$bus->driver_id){
-                            return JsonHelper::success(['You are a driver and riding this bus: '.$bus->model]);
+                            $bus_places = (int)$bus->max_passengers;
+                            $route = BusRoute::find($bus->route_id);
+                            if(!is_null($route)){
+                                //When Driver starts driving on route - we create item in driving_process
+                                $drivingProcess = DB::table('driving_processes')->where('bus_id',$bus->id)->first();
+                                if(is_null($drivingProcess)){
+                                    //Get the route of bus and take its first route point if
+                                    $init_route_point = $route->points->first();
+                                    if(!is_null($init_route_point)){
+                                        $current_route_point = RoutePoint::find($init_route_point->id);
+                                        DB::table('driving_processes')->insert(
+                                            [
+                                                'bus_id' => $bus->id,
+                                                'current_route_point_id' => $current_route_point->id,
+                                                'direction' => 'f',
+                                                'passengers' => mt_rand(1,$bus_places)
+                                            ]
+                                        );
+                                        $drivingProcess = DB::table('driving_processes')->where('bus_id',$bus->id)->first();
+                                    }
+                                }
+                                /////////
+                                $passengers_left = mt_rand(1,(int)$drivingProcess->passengers);
+                                $drivingProcess->passengers -= $passengers_left;
+                                $limit = $bus_places - $drivingProcess->passengers;
+                                $passengers_entered = mt_rand(1, $limit);
+                                $drivingProcess->passengers += $passengers_entered;
+
+                                $current_route_point = RoutePoint::find($drivingProcess->current_route_point_id);
+                                $linker_route_point = DB::table('route_has_route_points')->where([
+                                    'route_id' => $route->id,
+                                    'route_point_id' => $current_route_point->id
+                                ])->first();
+                                if(!is_null($linker_route_point)){
+                                    if($drivingProcess->direction === 'f'){
+                                        if(!is_null($linker_route_point->next_route_point_id)){
+                                            $next_point = $linker_route_point->next_route_point_id;
+                                        } elseif(!is_null($linker_route_point->previous_route_point_id)) {
+                                            $next_point = $linker_route_point->previous_route_point_id;
+                                            $drivingProcess->direction = 'b';
+                                        }
+                                    } else if($drivingProcess->direction === 'b'){
+                                        if(!is_null($linker_route_point->previous_route_point_id)){
+                                            $next_point = $linker_route_point->previous_route_point_id;
+                                        } elseif(!is_null($linker_route_point->next_route_point_id)) {
+                                            $next_point = $linker_route_point->next_route_point_id;
+                                            $drivingProcess->direction = 'f';
+                                        }
+                                    }
+                                    DB::table('driving_processes')
+                                        ->where(['bus_id' => $bus->id])
+                                        ->update(
+                                            [
+                                                'current_route_point_id' => $next_point,
+                                                'direction' => $drivingProcess->direction,
+                                                'passengers' => $drivingProcess->passengers
+                                            ]
+                                        );
+                                }
+                                return JsonHelper::success([
+                                    "current_route_point_name" => $current_route_point->street_name,
+                                    "current_route_point_number" => $current_route_point->street_number,
+                                    "passengers_out" => $passengers_left,
+                                    "passengers_in" => $passengers_entered,
+                                    "passengers_in_the_bus" => $drivingProcess->passengers,
+                                    "max_passengers_in_the_bus" => (int)$bus_places,
+                                    "description" => "You arrived to the route point $current_route_point->street_name $current_route_point->street_number. Passengers left: $passengers_left. Passengers entered: $passengers_entered. Passengers riding in the bus: {$drivingProcess->passengers}",
+                                ]);
+
+                            }
                         }
                         return JsonHelper::notFound('You are not a driver of this bus');
                     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusesTable extends Migration
+class CreateDrivingProcess extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateBusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('buses', function (Blueprint $table) {
+        Schema::create('driving_processes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('model',255);
-            $table->unsignedBigInteger('route_id')->nullable();
-            $table->unsignedBigInteger('driver_id')->nullable();
-            $table->integer('max_passengers');
+            $table->unsignedBigInteger('bus_id');
+            $table->unsignedBigInteger('current_route_point_id')->nullable();
+            $table->tinyInteger('direction');
+            $table->integer('passengers');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateBusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buses');
+        Schema::dropIfExists('driving_processes');
     }
 }

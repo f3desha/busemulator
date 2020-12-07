@@ -100,7 +100,7 @@ class RoutePointController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'street_name' => 'required|min:3|max:255',
-            'street_number' => 'required|min:3|max:8'
+            'street_number' => 'required|min:1|max:8'
         ]);
         if($validator->fails()){
             return JsonHelper::validationErrors($validator);

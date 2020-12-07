@@ -15,5 +15,13 @@ class RouteSeeder extends Seeder
         $route1 = new BusRoute();
         $route1->name = 'Route №12';
         $route1->save();
+
+        $route2 = new BusRoute();
+        $route2->name = 'Route №137';
+        $route2->save();
+
+        $route3 = new BusRoute();
+        $route3->name = 'Route №150';
+        $route3->save();
     }
 }

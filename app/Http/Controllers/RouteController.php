@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\JsonHelper;
 use App\Route as BusRoute;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Validator;
 
 class RouteController extends Controller
@@ -190,7 +191,14 @@ class RouteController extends Controller
         if(!empty($request->routePointId)){
             $route = BusRoute::find($request->routeId);
             if(!is_null($route)){
-                $route->removePoint($request->routePointId);
+                $point = DB::table('route_has_route_points')->where([
+                    'route_id' => $route->id,
+                    'route_point_id' => $request->routePointId
+                ])->get()->first();
+                if(!is_null($point)){
+                    $route->removePoint($request->routePointId);
+                    return JsonHelper::noContent();
+                }
                 return JsonHelper::notFound();
             }
         }

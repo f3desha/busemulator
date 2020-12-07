@@ -11,7 +11,7 @@
 
 ```bash
 curl -X POST \
-    "http://localhost/api/buses/assign-driver?driverId=17&busId=8" \
+    "http://localhost/api/buses/assign-driver?driverId=17&busId=20" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -30,7 +30,7 @@ $response = $client->post(
         ],
         'query' => [
             'driverId'=> '17',
-            'busId'=> '8',
+            'busId'=> '20',
         ],
     ]
 );
@@ -45,7 +45,7 @@ const url = new URL(
 
 let params = {
     "driverId": "17",
-    "busId": "8",
+    "busId": "20",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -146,7 +146,7 @@ Id of bus to assign the driver</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/buses/delete-driver?busId=9" \
+    "http://localhost/api/buses/delete-driver?busId=13" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -164,7 +164,7 @@ $response = $client->delete(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'busId'=> '9',
+            'busId'=> '13',
         ],
     ]
 );
@@ -178,7 +178,7 @@ const url = new URL(
 );
 
 let params = {
-    "busId": "9",
+    "busId": "13",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -257,7 +257,7 @@ Id of bus to remove the driver from</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/buses/assign-route?routeId=17&busId=6" \
+    "http://localhost/api/buses/assign-route?routeId=1&busId=11" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -275,8 +275,8 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'routeId'=> '17',
-            'busId'=> '6',
+            'routeId'=> '1',
+            'busId'=> '11',
         ],
     ]
 );
@@ -290,8 +290,8 @@ const url = new URL(
 );
 
 let params = {
-    "routeId": "17",
-    "busId": "6",
+    "routeId": "1",
+    "busId": "11",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -581,7 +581,7 @@ This endpoint allows you to look the details of a bus.
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/buses/12" \
+    -G "http://localhost/api/buses/7" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -591,7 +591,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/buses/12',
+    'http://localhost/api/buses/7',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -606,7 +606,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/12"
+    "http://localhost/api/buses/7"
 );
 
 let headers = {
@@ -681,7 +681,7 @@ The ID of the Bus.</p>
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/buses/13?name=aut" \
+    "http://localhost/api/buses/5?name=laboriosam" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -691,7 +691,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/buses/13',
+    'http://localhost/api/buses/5',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -699,7 +699,7 @@ $response = $client->put(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'name'=> 'aut',
+            'name'=> 'laboriosam',
         ],
     ]
 );
@@ -709,11 +709,11 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/13"
+    "http://localhost/api/buses/5"
 );
 
 let params = {
-    "name": "aut",
+    "name": "laboriosam",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -791,7 +791,7 @@ Name of the Bus.</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/buses?model=ut" \
+    "http://localhost/api/buses?model=numquam" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -809,7 +809,7 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'model'=> 'ut',
+            'model'=> 'numquam',
         ],
     ]
 );
@@ -823,7 +823,7 @@ const url = new URL(
 );
 
 let params = {
-    "model": "ut",
+    "model": "numquam",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -898,7 +898,7 @@ Make of the bus.</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/buses/7" \
+    "http://localhost/api/buses/17" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -908,7 +908,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/buses/7',
+    'http://localhost/api/buses/17',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -923,7 +923,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/7"
+    "http://localhost/api/buses/17"
 );
 
 let headers = {
@@ -987,13 +987,13 @@ The ID of the bus.</p>
 
 <small class="badge badge-darkred">requires authentication</small>
 
-
+Few things to drive a bus: register user, promote it to Driver, create Route and assign it to Bus and that's it - Driver can drive a Bus!
 
 > Example request:
 
 ```bash
-curl -X GET \
-    -G "http://localhost/api/buses/7/drive" \
+curl -X PUT \
+    "http://localhost/api/buses/14/drive" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -1002,8 +1002,8 @@ curl -X GET \
 ```php
 
 $client = new \GuzzleHttp\Client();
-$response = $client->get(
-    'http://localhost/api/buses/7/drive',
+$response = $client->put(
+    'http://localhost/api/buses/14/drive',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -1018,7 +1018,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/buses/7/drive"
+    "http://localhost/api/buses/14/drive"
 );
 
 let headers = {
@@ -1029,18 +1029,24 @@ let headers = {
 
 
 fetch(url, {
-    method: "GET",
+    method: "PUT",
     headers,
 }).then(response => response.json());
 ```
 
 
-> Example response (201, success):
+> Example response (200, success):
 
 ```json
-[
-    "You are a driver and riding this bus: Volvo"
-]
+{
+    "current_route_point_name": "Koroleva",
+    "current_route_point_number": "23",
+    "passengers_out": 113,
+    "passengers_in": 63,
+    "passengers_in_the_bus": 64,
+    "max_passengers_in_the_bus": 300,
+    "description": "You arrived to the route point Koroleva 23. Passengers left: 113. Passengers entered: 63. Passengers riding in the bus: 64"
+}
 ```
 > Example response (404, not found):
 
@@ -1067,7 +1073,7 @@ fetch(url, {
 
 ```json
 {
-    "msg": "Your role is not Driver"
+    "msg": "Your role is not a Driver"
 }
 ```
 > Example response (404, not found):
@@ -1077,32 +1083,32 @@ fetch(url, {
     "msg": "You are not a driver of this bus"
 }
 ```
-<div id="execution-results-GETapi-buses--id--drive" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-buses--id--drive"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-buses--id--drive"></code></pre>
+<div id="execution-results-PUTapi-buses--id--drive" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-buses--id--drive"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-buses--id--drive"></code></pre>
 </div>
-<div id="execution-error-GETapi-buses--id--drive" hidden>
+<div id="execution-error-PUTapi-buses--id--drive" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-buses--id--drive"></code></pre>
+    <pre><code id="execution-error-message-PUTapi-buses--id--drive"></code></pre>
 </div>
-<form id="form-GETapi-buses--id--drive" data-method="GET" data-path="api/buses/{id}/drive" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--id--drive', this);">
+<form id="form-PUTapi-buses--id--drive" data-method="PUT" data-path="api/buses/{id}/drive" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-buses--id--drive', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--id--drive" onclick="tryItOut('GETapi-buses--id--drive');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--id--drive" onclick="cancelTryOut('GETapi-buses--id--drive');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--id--drive" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-buses--id--drive" onclick="tryItOut('PUTapi-buses--id--drive');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-buses--id--drive" onclick="cancelTryOut('PUTapi-buses--id--drive');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-buses--id--drive" hidden>Send Request 💥</button>
     </h3>
 <p>
-<small class="badge badge-green">GET</small>
+<small class="badge badge-darkblue">PUT</small>
  <b><code>api/buses/{id}/drive</code></b>
 </p>
 <p>
-<label id="auth-GETapi-buses--id--drive" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--id--drive" data-component="header"></label>
+<label id="auth-PUTapi-buses--id--drive" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="PUTapi-buses--id--drive" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
 <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-<input type="number" name="id" data-endpoint="GETapi-buses--id--drive" data-component="url" required  hidden>
+<input type="number" name="id" data-endpoint="PUTapi-buses--id--drive" data-component="url" required  hidden>
 <br>
 The ID of the Bus.</p>
 </form>

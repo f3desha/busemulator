@@ -25,11 +25,25 @@ class UserSeeder extends Seeder
         $user1->roles()->attach($admin);
 
         $user2 = new User();
-        $user2->name = 'Driver';
+        $user2->name = 'Driver Alex';
         $user2->email = 'driver@admin.com';
         $user2->password = bcrypt('driver');
         $user2->save();
         $user2->roles()->attach($driver);
+
+        $user3 = new User();
+        $user3->name = 'Driver Vova';
+        $user3->email = 'drivera@admin.com';
+        $user3->password = bcrypt('driver');
+        $user3->save();
+        $user3->roles()->attach($driver);
+
+        $user3 = new User();
+        $user3->name = 'Driver Dima';
+        $user3->email = 'driverb@admin.com';
+        $user3->password = bcrypt('driver');
+        $user3->save();
+        $user3->roles()->attach($driver);
 
         $user3 = new User();
         $user3->name = 'Regular';
