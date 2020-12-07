@@ -29,4 +29,8 @@ Bus Emulator API is a product according to next tech spec:
 #Installation
 - Run your local server
 - Run 'composer install' command from terminal
+- Copy .env.example file and change it to .env
+- Paste in .env file 
+DB_CONNECTION=sqlite
+DB_DATABASE=/home/vagrant/first/database/busemulator.sqlite
 - Run 'php artisan migrate:refresh --seed'
