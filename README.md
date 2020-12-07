@@ -2,6 +2,7 @@
 
 
 ## Bus Emulator REST API install guide
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://i.gyazo.com/2b44569acacf2e6b9dec60f6a5bfd25d.png" width="400"></a></p>
 
 Bus Emulator API is a product according to next tech spec:
 
