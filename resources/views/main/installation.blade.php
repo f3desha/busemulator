@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        Installation guide here
+                        Read README.md in the root of project
                     </div>
                 </div>
             </div>

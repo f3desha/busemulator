@@ -73,7 +73,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/buses/assign-driver?driverId=2&amp;busId=15" \
+    "http://localhost/api/buses/assign-driver?driverId=17&amp;busId=8" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -88,8 +88,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'driverId'=&gt; '2',
-            'busId'=&gt; '15',
+            'driverId'=&gt; '17',
+            'busId'=&gt; '8',
         ],
     ]
 );
@@ -100,8 +100,8 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "driverId": "2",
-    "busId": "15",
+    "driverId": "17",
+    "busId": "8",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -187,7 +187,7 @@ Id of bus to assign the driver</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/buses/delete-driver?busId=19" \
+    "http://localhost/api/buses/delete-driver?busId=9" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -202,7 +202,7 @@ $response = $client-&gt;delete(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'busId'=&gt; '19',
+            'busId'=&gt; '9',
         ],
     ]
 );
@@ -213,7 +213,7 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "busId": "19",
+    "busId": "9",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -279,7 +279,7 @@ Id of bus to remove the driver from</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/buses/assign-route?routeId=18&amp;busId=8" \
+    "http://localhost/api/buses/assign-route?routeId=17&amp;busId=6" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -294,8 +294,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'routeId'=&gt; '18',
-            'busId'=&gt; '8',
+            'routeId'=&gt; '17',
+            'busId'=&gt; '6',
         ],
     ]
 );
@@ -306,8 +306,8 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "routeId": "18",
-    "busId": "8",
+    "routeId": "17",
+    "busId": "6",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -548,14 +548,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/buses/11" \
+    -G "http://localhost/api/buses/12" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/buses/11',
+    'http://localhost/api/buses/12',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -567,7 +567,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/11"
+    "http://localhost/api/buses/12"
 );
 
 let headers = {
@@ -630,14 +630,14 @@ The ID of the Bus.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/buses/2?name=voluptatem" \
+    "http://localhost/api/buses/13?name=aut" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/buses/2',
+    'http://localhost/api/buses/13',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -645,18 +645,18 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'name'=&gt; 'voluptatem',
+            'name'=&gt; 'aut',
         ],
     ]
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/2"
+    "http://localhost/api/buses/13"
 );
 
 let params = {
-    "name": "voluptatem",
+    "name": "aut",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -722,7 +722,7 @@ Name of the Bus.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/buses?model=eius" \
+    "http://localhost/api/buses?model=ut" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -737,7 +737,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'model'=&gt; 'eius',
+            'model'=&gt; 'ut',
         ],
     ]
 );
@@ -748,7 +748,7 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "model": "eius",
+    "model": "ut",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -811,14 +811,14 @@ Make of the bus.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/buses/15" \
+    "http://localhost/api/buses/7" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/buses/15',
+    'http://localhost/api/buses/7',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -830,7 +830,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/15"
+    "http://localhost/api/buses/7"
 );
 
 let headers = {
@@ -888,14 +888,14 @@ The ID of the bus.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/buses/sit/drive" \
+    -G "http://localhost/api/buses/7/drive" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/buses/sit/drive',
+    'http://localhost/api/buses/7/drive',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -907,7 +907,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/buses/sit/drive"
+    "http://localhost/api/buses/7/drive"
 );
 
 let headers = {
@@ -920,34 +920,70 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre>
-<div id="execution-results-GETapi-buses--bus--drive" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-buses--bus--drive"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-buses--bus--drive"></code></pre>
+<blockquote>
+<p>Example response (201, success):</p>
+</blockquote>
+<pre><code class="language-json">[
+    "You are a driver and riding this bus: Volvo"
+]</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Bus not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "This bus has no route assigned to id"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "User not found"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "Your role is not Driver"
+}</code></pre>
+<blockquote>
+<p>Example response (404, not found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "msg": "You are not a driver of this bus"
+}</code></pre>
+<div id="execution-results-GETapi-buses--id--drive" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-buses--id--drive"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-buses--id--drive"></code></pre>
 </div>
-<div id="execution-error-GETapi-buses--bus--drive" hidden>
+<div id="execution-error-GETapi-buses--id--drive" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-buses--bus--drive"></code></pre>
+    <pre><code id="execution-error-message-GETapi-buses--id--drive"></code></pre>
 </div>
-<form id="form-GETapi-buses--bus--drive" data-method="GET" data-path="api/buses/{bus}/drive" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--bus--drive', this);">
+<form id="form-GETapi-buses--id--drive" data-method="GET" data-path="api/buses/{id}/drive" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Basic {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-buses--id--drive', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--bus--drive" onclick="tryItOut('GETapi-buses--bus--drive');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--bus--drive" onclick="cancelTryOut('GETapi-buses--bus--drive');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--bus--drive" hidden>Send Request 💥</button>
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-buses--id--drive" onclick="tryItOut('GETapi-buses--id--drive');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-buses--id--drive" onclick="cancelTryOut('GETapi-buses--id--drive');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-buses--id--drive" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
- <b><code>api/buses/{bus}/drive</code></b>
+ <b><code>api/buses/{id}/drive</code></b>
 </p>
 <p>
-<label id="auth-GETapi-buses--bus--drive" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--bus--drive" data-component="header"></label>
+<label id="auth-GETapi-buses--id--drive" hidden>Authorization header: <b><code>Basic </code></b><input type="text" name="Authorization" data-prefix="Basic " data-endpoint="GETapi-buses--id--drive" data-component="header"></label>
 </p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
-<b><code>bus</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="bus" data-endpoint="GETapi-buses--bus--drive" data-component="url" required  hidden>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="GETapi-buses--id--drive" data-component="url" required  hidden>
 <br>
-</p>
+The ID of the Bus.</p>
 </form><h1>Drivers (role)</h1>
 <h2>Display all drivers.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
@@ -1031,14 +1067,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/bus-drivers/8" \
+    -G "http://localhost/api/bus-drivers/14" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/bus-drivers/8',
+    'http://localhost/api/bus-drivers/14',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1050,7 +1086,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/bus-drivers/8"
+    "http://localhost/api/bus-drivers/14"
 );
 
 let headers = {
@@ -1117,14 +1153,14 @@ The ID of the user with Driver role.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/bus-drivers/9" \
+    "http://localhost/api/bus-drivers/10" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/bus-drivers/9',
+    'http://localhost/api/bus-drivers/10',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1136,7 +1172,7 @@ $response = $client-&gt;put(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/bus-drivers/9"
+    "http://localhost/api/bus-drivers/10"
 );
 
 let headers = {
@@ -1197,14 +1233,14 @@ The ID of the user with Driver role.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/bus-drivers/5" \
+    "http://localhost/api/bus-drivers/7" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/bus-drivers/5',
+    'http://localhost/api/bus-drivers/7',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1216,7 +1252,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/bus-drivers/5"
+    "http://localhost/api/bus-drivers/7"
 );
 
 let headers = {
@@ -1375,14 +1411,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/route-points/19" \
+    -G "http://localhost/api/route-points/20" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/route-points/19',
+    'http://localhost/api/route-points/20',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1394,7 +1430,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/route-points/19"
+    "http://localhost/api/route-points/20"
 );
 
 let headers = {
@@ -1458,7 +1494,7 @@ The ID of the route point.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/route-points?street_name=iure&amp;street_number=id&amp;lat=sed&amp;lng=similique" \
+    "http://localhost/api/route-points?street_name=rerum&amp;street_number=illo&amp;lat=beatae&amp;lng=doloribus" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1473,10 +1509,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'street_name'=&gt; 'iure',
-            'street_number'=&gt; 'id',
-            'lat'=&gt; 'sed',
-            'lng'=&gt; 'similique',
+            'street_name'=&gt; 'rerum',
+            'street_number'=&gt; 'illo',
+            'lat'=&gt; 'beatae',
+            'lng'=&gt; 'doloribus',
         ],
     ]
 );
@@ -1487,10 +1523,10 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "street_name": "iure",
-    "street_number": "id",
-    "lat": "sed",
-    "lng": "similique",
+    "street_name": "rerum",
+    "street_number": "illo",
+    "lat": "beatae",
+    "lng": "doloribus",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1573,14 +1609,14 @@ Longitude of the route pointin format 1.111111</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/route-points/2?street_name=aliquid&amp;street_number=nam&amp;lat=est&amp;lng=rem" \
+    "http://localhost/api/route-points/13?street_name=et&amp;street_number=molestiae&amp;lat=ratione&amp;lng=nemo" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/route-points/2',
+    'http://localhost/api/route-points/13',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1588,24 +1624,24 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'street_name'=&gt; 'aliquid',
-            'street_number'=&gt; 'nam',
-            'lat'=&gt; 'est',
-            'lng'=&gt; 'rem',
+            'street_name'=&gt; 'et',
+            'street_number'=&gt; 'molestiae',
+            'lat'=&gt; 'ratione',
+            'lng'=&gt; 'nemo',
         ],
     ]
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/route-points/2"
+    "http://localhost/api/route-points/13"
 );
 
 let params = {
-    "street_name": "aliquid",
-    "street_number": "nam",
-    "lat": "est",
-    "lng": "rem",
+    "street_name": "et",
+    "street_number": "molestiae",
+    "lat": "ratione",
+    "lng": "nemo",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1692,14 +1728,14 @@ Longitude of the route pointin format 1.111111</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/route-points/12" \
+    "http://localhost/api/route-points/14" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/route-points/12',
+    'http://localhost/api/route-points/14',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -1711,7 +1747,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/route-points/12"
+    "http://localhost/api/route-points/14"
 );
 
 let headers = {
@@ -1770,7 +1806,7 @@ The ID of the route.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/routes/add-point?routeId=13&amp;routePointId=6&amp;afterRoutePoint=10" \
+    "http://localhost/api/routes/add-point?routeId=12&amp;routePointId=10&amp;afterRoutePoint=9" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1785,9 +1821,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'routeId'=&gt; '13',
-            'routePointId'=&gt; '6',
-            'afterRoutePoint'=&gt; '10',
+            'routeId'=&gt; '12',
+            'routePointId'=&gt; '10',
+            'afterRoutePoint'=&gt; '9',
         ],
     ]
 );
@@ -1798,9 +1834,9 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "routeId": "13",
-    "routePointId": "6",
-    "afterRoutePoint": "10",
+    "routeId": "12",
+    "routePointId": "10",
+    "afterRoutePoint": "9",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1912,7 +1948,7 @@ Id of the route point, after which should be added to route. If not set, new rou
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/routes/delete-point?routeId=10&amp;routePointId=12" \
+    "http://localhost/api/routes/delete-point?routeId=15&amp;routePointId=6" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -1927,8 +1963,8 @@ $response = $client-&gt;delete(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'routeId'=&gt; '10',
-            'routePointId'=&gt; '12',
+            'routeId'=&gt; '15',
+            'routePointId'=&gt; '6',
         ],
     ]
 );
@@ -1939,8 +1975,8 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "routeId": "10",
-    "routePointId": "12",
+    "routeId": "15",
+    "routePointId": "6",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -2090,14 +2126,14 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/routes/7" \
+    -G "http://localhost/api/routes/20" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/routes/7',
+    'http://localhost/api/routes/20',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -2109,7 +2145,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/routes/7"
+    "http://localhost/api/routes/20"
 );
 
 let headers = {
@@ -2209,14 +2245,14 @@ The ID of the route.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://localhost/api/routes/9?name=iste" \
+    "http://localhost/api/routes/15?name=qui" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/api/routes/9',
+    'http://localhost/api/routes/15',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -2224,18 +2260,18 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'name'=&gt; 'iste',
+            'name'=&gt; 'qui',
         ],
     ]
 );
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/routes/9"
+    "http://localhost/api/routes/15"
 );
 
 let params = {
-    "name": "iste",
+    "name": "qui",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -2306,7 +2342,7 @@ Name of the route.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/routes?name=minima" \
+    "http://localhost/api/routes?name=incidunt" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
@@ -2321,7 +2357,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'name'=&gt; 'minima',
+            'name'=&gt; 'incidunt',
         ],
     ]
 );
@@ -2332,7 +2368,7 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let params = {
-    "name": "minima",
+    "name": "incidunt",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -2397,14 +2433,14 @@ Name of the route.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://localhost/api/routes/4" \
+    "http://localhost/api/routes/3" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/api/routes/4',
+    'http://localhost/api/routes/3',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Basic {YOUR_AUTH_KEY}',
@@ -2416,7 +2452,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/routes/4"
+    "http://localhost/api/routes/3"
 );
 
 let headers = {

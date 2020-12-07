@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "a50f2cec-2066-4016-9e47-f6c8f4e0cf49",
+        "_postman_id": "aff090c5-0aff-4a28-b8c9-20dc5c43d94b",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -29,18 +29,18 @@
                             "query": [
                                 {
                                     "key": "driverId",
-                                    "value": "2",
+                                    "value": "17",
                                     "description": "Id of Driver user",
                                     "disabled": false
                                 },
                                 {
                                     "key": "busId",
-                                    "value": "15",
+                                    "value": "8",
                                     "description": "Id of bus to assign the driver",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-driver?driverId=2&busId=15"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-driver?driverId=17&busId=8"
                         },
                         "method": "POST",
                         "header": [
@@ -68,12 +68,12 @@
                             "query": [
                                 {
                                     "key": "busId",
-                                    "value": "19",
+                                    "value": "9",
                                     "description": "Id of bus to remove the driver from",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/delete-driver?busId=19"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/delete-driver?busId=9"
                         },
                         "method": "DELETE",
                         "header": [
@@ -101,18 +101,18 @@
                             "query": [
                                 {
                                     "key": "routeId",
-                                    "value": "18",
+                                    "value": "17",
                                     "description": "Id of Route to assign to bus",
                                     "disabled": false
                                 },
                                 {
                                     "key": "busId",
-                                    "value": "8",
+                                    "value": "6",
                                     "description": "Id of bus to assign the driver",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-route?routeId=18&busId=8"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/assign-route?routeId=17&busId=6"
                         },
                         "method": "POST",
                         "header": [
@@ -195,7 +195,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "11",
+                                    "value": "12",
                                     "description": "The ID of the Bus."
                                 }
                             ]
@@ -226,17 +226,17 @@
                             "query": [
                                 {
                                     "key": "name",
-                                    "value": "voluptatem",
+                                    "value": "aut",
                                     "description": "Name of the Bus.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:id?name=voluptatem",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:id?name=aut",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "13",
                                     "description": "The ID of the Bus."
                                 }
                             ]
@@ -267,12 +267,12 @@
                             "query": [
                                 {
                                     "key": "model",
-                                    "value": "eius",
+                                    "value": "ut",
                                     "description": "Make of the bus.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses?model=eius"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses?model=ut"
                         },
                         "method": "POST",
                         "header": [
@@ -303,7 +303,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "15",
+                                    "value": "7",
                                     "description": "The ID of the bus."
                                 }
                             ]
@@ -330,15 +330,15 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/buses\/:bus\/drive",
+                            "path": "api\/buses\/:id\/drive",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:bus\/drive",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/buses\/:id\/drive",
                             "variable": [
                                 {
-                                    "id": "bus",
-                                    "key": "bus",
-                                    "value": "sit",
-                                    "description": ""
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the Bus."
                                 }
                             ]
                         },
@@ -403,7 +403,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "8",
+                                    "value": "14",
                                     "description": "The ID of the user with Driver role."
                                 }
                             ]
@@ -437,7 +437,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "10",
                                     "description": "The ID of the user with Driver role."
                                 }
                             ]
@@ -471,7 +471,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "7",
                                     "description": "The ID of the user with Driver role."
                                 }
                             ]
@@ -537,7 +537,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "19",
+                                    "value": "20",
                                     "description": "The ID of the route point."
                                 }
                             ]
@@ -568,30 +568,30 @@
                             "query": [
                                 {
                                     "key": "street_name",
-                                    "value": "iure",
+                                    "value": "rerum",
                                     "description": "Name of the route point Street.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "street_number",
-                                    "value": "id",
+                                    "value": "illo",
                                     "description": "Number of the route point Street.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "lat",
-                                    "value": "sed",
+                                    "value": "beatae",
                                     "description": "Latitude of the route point in format 1.111111",
                                     "disabled": false
                                 },
                                 {
                                     "key": "lng",
-                                    "value": "similique",
+                                    "value": "doloribus",
                                     "description": "Longitude of the route pointin format 1.111111",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points?street_name=iure&street_number=id&lat=sed&lng=similique"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points?street_name=rerum&street_number=illo&lat=beatae&lng=doloribus"
                         },
                         "method": "POST",
                         "header": [
@@ -619,35 +619,35 @@
                             "query": [
                                 {
                                     "key": "street_name",
-                                    "value": "aliquid",
+                                    "value": "et",
                                     "description": "Name of the route point Street.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "street_number",
-                                    "value": "nam",
+                                    "value": "molestiae",
                                     "description": "Number of the route point Street.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "lat",
-                                    "value": "est",
+                                    "value": "ratione",
                                     "description": "Latitude of the route point in format 1.111111",
                                     "disabled": false
                                 },
                                 {
                                     "key": "lng",
-                                    "value": "rem",
+                                    "value": "nemo",
                                     "description": "Longitude of the route pointin format 1.111111",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:id?street_name=aliquid&street_number=nam&lat=est&lng=rem",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/route-points\/:id?street_name=et&street_number=molestiae&lat=ratione&lng=nemo",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "13",
                                     "description": "The ID of the route point."
                                 }
                             ]
@@ -681,7 +681,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "12",
+                                    "value": "14",
                                     "description": "The ID of the route."
                                 }
                             ]
@@ -718,24 +718,24 @@
                             "query": [
                                 {
                                     "key": "routeId",
-                                    "value": "13",
+                                    "value": "12",
                                     "description": "Id of the route where route point should be added.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "routePointId",
-                                    "value": "6",
+                                    "value": "10",
                                     "description": "Id of the route point, which should be added to route.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "afterRoutePoint",
-                                    "value": "10",
+                                    "value": "9",
                                     "description": "Id of the route point, after which should be added to route. If not set, new route point will be added as last.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/add-point?routeId=13&routePointId=6&afterRoutePoint=10"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/add-point?routeId=12&routePointId=10&afterRoutePoint=9"
                         },
                         "method": "POST",
                         "header": [
@@ -763,18 +763,18 @@
                             "query": [
                                 {
                                     "key": "routeId",
-                                    "value": "10",
+                                    "value": "15",
                                     "description": "Id of the route where route point should be deleted from.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "routePointId",
-                                    "value": "12",
+                                    "value": "6",
                                     "description": "Id of the route point, which should be deleted from route.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/delete-point?routeId=10&routePointId=12"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/delete-point?routeId=15&routePointId=6"
                         },
                         "method": "DELETE",
                         "header": [
@@ -831,7 +831,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "20",
                                     "description": "The ID of the route."
                                 }
                             ]
@@ -862,17 +862,17 @@
                             "query": [
                                 {
                                     "key": "name",
-                                    "value": "iste",
+                                    "value": "qui",
                                     "description": "Name of the route.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/:id?name=iste",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes\/:id?name=qui",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "15",
                                     "description": "The ID of the route."
                                 }
                             ]
@@ -903,12 +903,12 @@
                             "query": [
                                 {
                                     "key": "name",
-                                    "value": "minima",
+                                    "value": "incidunt",
                                     "description": "Name of the route.",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/routes?name=minima"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/routes?name=incidunt"
                         },
                         "method": "POST",
                         "header": [
@@ -939,7 +939,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "3",
                                     "description": "The ID of the route."
                                 }
                             ]

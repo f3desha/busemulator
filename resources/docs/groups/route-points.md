@@ -128,7 +128,7 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/route-points/19" \
+    -G "http://localhost/api/route-points/20" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -138,7 +138,7 @@ curl -X GET \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://localhost/api/route-points/19',
+    'http://localhost/api/route-points/20',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -153,7 +153,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/route-points/19"
+    "http://localhost/api/route-points/20"
 );
 
 let headers = {
@@ -229,7 +229,7 @@ The ID of the route point.</p>
 
 ```bash
 curl -X POST \
-    "http://localhost/api/route-points?street_name=iure&street_number=id&lat=sed&lng=similique" \
+    "http://localhost/api/route-points?street_name=rerum&street_number=illo&lat=beatae&lng=doloribus" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -247,10 +247,10 @@ $response = $client->post(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'street_name'=> 'iure',
-            'street_number'=> 'id',
-            'lat'=> 'sed',
-            'lng'=> 'similique',
+            'street_name'=> 'rerum',
+            'street_number'=> 'illo',
+            'lat'=> 'beatae',
+            'lng'=> 'doloribus',
         ],
     ]
 );
@@ -264,10 +264,10 @@ const url = new URL(
 );
 
 let params = {
-    "street_name": "iure",
-    "street_number": "id",
-    "lat": "sed",
-    "lng": "similique",
+    "street_name": "rerum",
+    "street_number": "illo",
+    "lat": "beatae",
+    "lng": "doloribus",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -362,7 +362,7 @@ Longitude of the route pointin format 1.111111</p>
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/route-points/2?street_name=aliquid&street_number=nam&lat=est&lng=rem" \
+    "http://localhost/api/route-points/13?street_name=et&street_number=molestiae&lat=ratione&lng=nemo" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -372,7 +372,7 @@ curl -X PUT \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://localhost/api/route-points/2',
+    'http://localhost/api/route-points/13',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -380,10 +380,10 @@ $response = $client->put(
             'Accept' => 'application/json',
         ],
         'query' => [
-            'street_name'=> 'aliquid',
-            'street_number'=> 'nam',
-            'lat'=> 'est',
-            'lng'=> 'rem',
+            'street_name'=> 'et',
+            'street_number'=> 'molestiae',
+            'lat'=> 'ratione',
+            'lng'=> 'nemo',
         ],
     ]
 );
@@ -393,14 +393,14 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/route-points/2"
+    "http://localhost/api/route-points/13"
 );
 
 let params = {
-    "street_name": "aliquid",
-    "street_number": "nam",
-    "lat": "est",
-    "lng": "rem",
+    "street_name": "et",
+    "street_number": "molestiae",
+    "lat": "ratione",
+    "lng": "nemo",
 };
 Object.keys(params)
     .forEach(key => url.searchParams.append(key, params[key]));
@@ -499,7 +499,7 @@ Longitude of the route pointin format 1.111111</p>
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/route-points/12" \
+    "http://localhost/api/route-points/14" \
     -H "Authorization: Basic {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -509,7 +509,7 @@ curl -X DELETE \
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://localhost/api/route-points/12',
+    'http://localhost/api/route-points/14',
     [
         'headers' => [
             'Authorization' => 'Basic {YOUR_AUTH_KEY}',
@@ -524,7 +524,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/route-points/12"
+    "http://localhost/api/route-points/14"
 );
 
 let headers = {

@@ -368,21 +368,55 @@ class BusController extends Controller
     /**
      * Drive a bus.
      * @authenticated
+     * @response status=201 scenario=success
+        [
+        "You are a driver and riding this bus: Volvo"
+        ]
+     * @response status=404 scenario="not found"
+        {
+        "msg": "Bus not found"
+        }
+     * @response status=404 scenario="not found"
+        {
+        "msg": "This bus has no route assigned to id"
+        }
+     * @response status=404 scenario="not found"
+        {
+        "msg": "User not found"
+        }
+     * @response status=404 scenario="not found"
+        {
+        "msg": "Your role is not a Driver"
+        }
+     * @response status=404 scenario="not found"
+        {
+        "msg": "You are not a driver of this bus"
+        }
      * @group Buses
+     * @urlParam id integer required The ID of the Bus.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Bus $bus
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function drive(Request $request, Bus $bus)
+    public function drive(Request $request, $id)
     {
-        //If bus exists, has route, driver, and its driver is current user - drive!
-        if($bus){
+        $bus = Bus::find($id);
+        if(!is_null($bus)){
             if(!is_null($bus->route_id)){
                 $user = $request->user();
-                if($user && $user->hasRole('driver') && $user->id === (int)$bus->driver_id){
-                    return response()->json(['You are a driver and riding this bus: '.$bus->model], 200);
+                if($user){
+                    if($user->hasRole('driver')){
+                        if($user->id === (int)$bus->driver_id){
+                            return JsonHelper::success(['You are a driver and riding this bus: '.$bus->model]);
+                        }
+                        return JsonHelper::notFound('You are not a driver of this bus');
+                    }
+                    return JsonHelper::notFound('Your role is not a Driver');
                 }
+                return JsonHelper::notFound('User not found');
             }
+            return JsonHelper::notFound('This bus has no route assigned to id');
         }
+        return JsonHelper::notFound('Bus not found');
     }
 }
