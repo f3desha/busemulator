@@ -37,11 +37,11 @@ DB_DATABASE=*LARAVEL_ROOT*/database/busemulator.sqlite
 - Run 'php artisan migrate:refresh --seed'
 
 # Credentials
-admin@admin.com:password [Admin role]
-driver@admin.com:driver [Driver role]
-drivera@admin.com:driver [Driver role]
-driverb@admin.com:driver [Driver role]
-user@admin.com:regular [User role]
+- admin@admin.com:password [Admin role]
+- driver@admin.com:driver [Driver role]
+- drivera@admin.com:driver [Driver role]
+- driverb@admin.com:driver [Driver role]
+- user@admin.com:regular [User role]
 
 # Workflow
 Use Admin account to:
