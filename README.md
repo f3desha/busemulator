@@ -35,3 +35,23 @@ Bus Emulator API is a product according to next tech spec:
 DB_CONNECTION=sqlite
 DB_DATABASE=*LARAVEL_ROOT*/database/busemulator.sqlite
 - Run 'php artisan migrate:refresh --seed'
+
+# Credentials
+admin@admin.com:password [Admin role]
+driver@admin.com:driver [Driver role]
+drivera@admin.com:driver [Driver role]
+driverb@admin.com:driver [Driver role]
+user@admin.com:regular [User role]
+
+# Workflow
+Use Admin account to:
+- <a href="/docs/#store-a-newly-created-route-point">Create as many Route Points as you want</a>
+- <a href="/docs/#store-a-newly-created-route">Create Route</a>
+- <a href="/docs/#add-a-point-to-route">Add route points to Route</a>
+- <a href="/docs/#store-a-newly-created-bus">Create new Bus</a>
+- <a href="/docs/#assign-route-to-bus">Assign Route to bus</a>
+- <a href="/docs/#change-users-role-to-driver">Promote regular user to driver or use seeded drivers</a>
+- <a href="/docs/#assign-driver-to-bus">Assign Driver to bus</a>
+
+Use Driver account to:
+- <a href="/docs/#drive-a-bus">Drive a bus this driver assigned to</a>
