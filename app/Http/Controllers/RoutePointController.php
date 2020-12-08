@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\JsonHelper;
+use App\Route;
 use App\RoutePoint;
 use App\Http\Resources\RoutePoint as RoutePointResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Validator;
 
 class RoutePointController extends Controller
@@ -203,6 +205,16 @@ class RoutePointController extends Controller
     {
         $routePoint = RoutePoint::find($id);
         if(!is_null($routePoint)){
+            $allRoutes = Route::get();
+            foreach ($allRoutes as $route){
+                $point = DB::table('route_has_route_points')->where([
+                    'route_id' => $route->id,
+                    'route_point_id' => $id
+                ])->get()->first();
+                if(!is_null($point)){
+                    $route->removePoint($id);
+                }
+            }
             $routePoint->delete();
             return JsonHelper::noContent();
         }
